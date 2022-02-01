@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="PrismApp2.Views.ViewA"
+             Title="View A">
+  <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <StackLayout Orientation="Horizontal"
+                 Grid.Row="2">
+            <Button Text="Navigate to View B"
+              Command="{Binding NavigateCommand}"
+              CommandParameter="ViewB"
+              HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    <Button Text="Main Page"
+            Command="{Binding GoHomeCommand}"
+            Style="{StaticResource DarkButton}"
+            Grid.Row="3"/>
+  </Grid>
+</ContentPage>

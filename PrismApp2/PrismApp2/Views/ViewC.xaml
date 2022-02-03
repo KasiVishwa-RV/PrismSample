@@ -5,18 +5,13 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismApp2.Views.ViewC"
              Title="View C">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="20" />
-        </Grid.RowDefinitions>
-        <Button Text="Main Page"
+    <StackLayout>
+        
+        <Label Text="{Binding Title}"/>
+    <Button Text="Main Page"
             Command="{Binding GoHomeCommand}"
-            Style="{StaticResource DarkButton}"
-            Grid.Row="3"/>
-    </Grid>
+            Style="{StaticResource DarkButton}"/>
+
+    </StackLayout>
 
 </ContentPage>

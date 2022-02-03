@@ -18,8 +18,9 @@ namespace PrismApp2
         protected override async void OnInitialized()
         {
             InitializeComponent();
+            DependencyService.Register<IViewAViewModel,ViewAViewModel>();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/Login_Page");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -31,6 +32,8 @@ namespace PrismApp2
             containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
             containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
             containerRegistry.RegisterForNavigation<ViewC, ViewCViewModel>();
+            containerRegistry.RegisterForNavigation<ViewModelLocator, ViewModelLocatorViewModel>();
+            containerRegistry.RegisterForNavigation<Login_Page, Login_PageViewModel>();
         }
     }
 }

@@ -8,12 +8,19 @@
     <StackLayout VerticalOptions="Center"
                Spacing="30">
         <Button Text="Go To ViewA"
-            Command="{Binding NavigateCommand}"
-            CommandParameter="/NavigationPage/ViewA" />
+            Command="{Binding NavigateCommandA}"
+            CommandParameter="/NavigationPage/ViewA"
+                Style="{StaticResource DarkButton}"/>
+        <Button Text="Go To ViewB"
+            Command="{Binding NavigateCommandB}"
+            CommandParameter="/NavigationPage/ViewA/ViewB"/>
         <Button Text="Go To ViewC"
-            Command="{Binding NavigateCommand}"
+            Command="{Binding NavigateCommandC}"
             CommandParameter="/NavigationPage/ViewA/ViewB/ViewC"
             Style="{StaticResource DarkButton}"/>
+        <Button Text="ViewModelLocator"
+                Command='{Binding NavigateCommandD}'
+                CommandParameter="/NavigationPage/ViewModelLocator"/>
     </StackLayout>
 
 

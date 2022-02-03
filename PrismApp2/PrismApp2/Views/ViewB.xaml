@@ -5,26 +5,18 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismApp2.Views.ViewB"
              Title="View B">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="20" />
-        </Grid.RowDefinitions>
-        <StackLayout Orientation="Horizontal"
-                 Grid.Row="2">
+    
+        <StackLayout>
+            <Label Text="{Binding Title}"/>
             <Button Text="Navigate to View C"
-              Command="{Binding NavigateCommand}"
+              Command="{Binding NavigateCommandC}"
               CommandParameter="ViewC"
               HorizontalOptions="FillAndExpand">
             </Button>
-        </StackLayout>
         <Button Text="Main Page"
             Command="{Binding GoHomeCommand}"
-            Style="{StaticResource DarkButton}"
-            Grid.Row="3"/>
-    </Grid>
+            Style="{StaticResource DarkButton}"/>
+        </StackLayout>
+    
 
 </ContentPage>

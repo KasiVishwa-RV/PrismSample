@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PrismApp2.ViewModels
 {
-    public class ViewCViewModel : BindableBase, INavigationAware
+    public class Login_PageViewModel : BindableBase,INavigatedAware
     {
         private string _title;
         public string Title
@@ -22,30 +22,35 @@ namespace PrismApp2.ViewModels
                 SetProperty(ref _title, value);
             }
         }
-        public ViewCViewModel(INavigationService navigationService)
+        public Login_PageViewModel(INavigationService _navigationService)
         {
-            Title = "View C";
-            _navigationService = navigationService;
+            Title = "Login Page";
         }
-        private DelegateCommand _navigateCommandMainPage;
         private readonly INavigationService _navigationService;
-        public DelegateCommand GoHomeCommand =>
-            _navigateCommandMainPage ?? (_navigateCommandMainPage = new DelegateCommand(ExecuteNavigateCommand));
+
+        private DelegateCommand _navigateCommand;
+        public DelegateCommand NavigateCommand =>
+            _navigateCommand ?? (_navigateCommand = new DelegateCommand(ExecuteNavigateCommand));
+
+        public object Username { get; private set; }
+        public object Password { get; private set; }
 
         async void ExecuteNavigateCommand()
         {
-            await _navigationService.GoBackToRootAsync();
+            if(Username.Equals("admin") && Password.Equals("123"))
+            {
+                await _navigationService.NavigateAsync("MainPage");
+            }
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-
+          
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            Title = parameters.GetValue<string>("title");
+            
         }
     }
-
 }

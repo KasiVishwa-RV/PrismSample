@@ -10,7 +10,7 @@
         <Entry x:Name="Password" Placeholder="Password" IsPassword="True"/>
         <Button Text="Sign in" 
                 VerticalOptions="Center" 
-                Command="NavigateCommand" 
+                Command="{Binding NavigateCommand}" 
                 CommandParameter="/NavigationPage/MainPage"
                 Style="{StaticResource DarkButton}"/>
     </StackLayout>

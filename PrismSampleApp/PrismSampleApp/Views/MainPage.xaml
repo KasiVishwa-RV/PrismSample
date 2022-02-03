@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:PrismSampleApp.ViewModels"
+             x:Class="PrismSampleApp.Views.MainPage"
+             Title="Main Page">
+
+    <StackLayout VerticalOptions="Center"
+               Spacing="30">
+        <Button Text="Go To ViewA"
+            Command="{Binding NavigateCommandA}"
+            CommandParameter="/NavigationPage/ViewA"
+                Style="{StaticResource DarkButton}"/>
+        <Button Text="Go To ViewB"
+            Command="{Binding NavigateCommandB}"
+            CommandParameter="/NavigationPage/ViewA/ViewB"/>
+        <Button Text="Go To ViewC"
+            Command="{Binding NavigateCommandC}"
+            CommandParameter="/NavigationPage/ViewA/ViewB/ViewC"
+            Style="{StaticResource DarkButton}"/>
+        <Button Text="ViewModelLocator"
+                Command='{Binding NavigateCommandD}'
+                CommandParameter="/NavigationPage/ViewModelLocator"/>
+    </StackLayout>
+
+
+
+</ContentPage>

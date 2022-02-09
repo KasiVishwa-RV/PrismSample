@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismSampleApp", "PrismSampleApp\PrismSampleApp\PrismSampleApp.csproj", "{9136E958-C5C9-4705-8BE6-644BA662381E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismSampleApp", "PrismSampleApp\PrismSampleApp\PrismSampleApp.csproj", "{9136E958-C5C9-4705-8BE6-644BA662381E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismSampleApp.Android", "PrismSampleApp\PrismSampleApp.Android\PrismSampleApp.Android.csproj", "{99E40400-39EE-4FD7-B47A-5F8EBD19C912}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismSampleApp.iOS", "PrismSampleApp\PrismSampleApp.iOS\PrismSampleApp.iOS.csproj", "{153B07AF-82CA-4666-A8F2-50E56A1DE284}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismSampleApp.UWP", "PrismSampleApp\PrismSampleApp.UWP\PrismSampleApp.UWP.csproj", "{C8D44EF1-94D3-4E6D-80D4-3AC85B02C81D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{481DA676-5AC7-4DB9-A39F-9D0F9C0F6045}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,9 +2,9 @@
 
 namespace PrismSampleApp.Views
 {
-    public partial class Login_Page : ContentPage
+    public partial class ViewContactList : ContentPage
     {
-        public Login_Page()
+        public ViewContactList()
         {
             InitializeComponent();
         }

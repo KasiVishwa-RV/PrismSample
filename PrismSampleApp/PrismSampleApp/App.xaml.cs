@@ -19,7 +19,7 @@ namespace PrismSampleApp
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/Login_Page");
+            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,7 +32,10 @@ namespace PrismSampleApp
             containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
             containerRegistry.RegisterForNavigation<ViewC, ViewCViewModel>();
             containerRegistry.RegisterForNavigation<ViewModelLocator, ViewModelLocatorViewModel>();
-            containerRegistry.RegisterForNavigation<Login_Page, Login_PageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddContact, AddContactViewModel>();
+            containerRegistry.RegisterForNavigation<ViewContactList, ViewContactListViewModel>();
+            containerRegistry.RegisterForNavigation<AddPerson, AddPersonViewModel>();
         }
     }
 }

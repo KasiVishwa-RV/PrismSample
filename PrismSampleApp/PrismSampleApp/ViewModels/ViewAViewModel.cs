@@ -10,7 +10,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(ViewAViewModel))]
 namespace PrismSampleApp.ViewModels
 {
-    public class ViewAViewModel : BindableBase, INavigationAware, IViewAViewModel
+    public class ViewAViewModel : BindableBase, INavigationAware
     {
         private string _title;
         public string Title

@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:ViewModel="clr-namespace:PrismSampleApp.ViewModels" x:DataType="ViewModel:LoginPageViewModel"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="PrismSampleApp.Views.Login_Page"
-             Title="Login Page"
+             x:Class="PrismSampleApp.Views.LoginPage"
+             Title="{Binding Title}"
              BackgroundColor="lightblue">
 
+    
     <StackLayout VerticalOptions="Center">
-        <Entry x:Name="UserName" Placeholder="Name"/>
-        <Entry x:Pwd="Password"  Placeholder="Password" IsPassword="True"/>
+        <Entry Text="{Binding Username}" Placeholder="Name"/>
+        <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True"/>
         <Button Text="Sign in" 
                 VerticalOptions="Center" 
                 Command="{Binding NavigateCommand}" 

@@ -24,12 +24,10 @@ namespace PrismSampleApp.ViewModels
             }
         }
 
-        IViewAViewModel ViewAViewModel;
         public ViewBViewModel(INavigationService navigationService)
         {
             Title = "View B";
             _navigationService = navigationService;
-            ViewAViewModel = DependencyService.Get<IViewAViewModel>();
         }
         private DelegateCommand _navigateCommand;
         private readonly INavigationService _navigationService;

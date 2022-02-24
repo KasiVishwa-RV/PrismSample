@@ -22,9 +22,9 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <Label  Text="{Binding Name}" TextColor="Black"  BackgroundColor="Aquamarine" FontSize="Header"
+                    <Label x:Name="Contactname"  Text="{Binding Name}" TextColor="Black"  BackgroundColor="Aquamarine" FontSize="Header"
                                    VerticalTextAlignment="Center" />
-                        <Label  Text="{Binding Number}" TextColor="Black" BackgroundColor="Aquamarine" FontSize="Body"
+                        <Label x:Name="Contactnumber"  Text="{Binding Number}" TextColor="Black" BackgroundColor="Aquamarine" FontSize="Body"
                                    VerticalTextAlignment="Center" />
                     </StackLayout>
             </DataTemplate>

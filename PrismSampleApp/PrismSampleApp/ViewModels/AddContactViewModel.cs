@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class AddContactViewModel : BindableBase, INotifyPropertyChanged
+    public class AddContactViewModel : BindableBase, INotifyPropertyChanged,INavigationAware
     {
         public AddContactViewModel(INavigationService navigationService)
         {
@@ -20,8 +20,9 @@ namespace PrismSampleApp.ViewModels
             _navigationService = navigationService;
             ContactList = new ObservableCollection<Contacts>
             {
+                
             };
-            AddCommand = new Command(() =>
+           AddCommand = new Command(() =>
             {
                 ContactList.Add(new Contacts { Name = ContactName, Number = MobileNumber }); ;
             });
@@ -69,7 +70,20 @@ namespace PrismSampleApp.ViewModels
         }
         private async void ContactCommandHandler()
         {
-            await _navigationService.NavigateAsync("ViewContactList");
+            var contactPage = new NavigationParameters();
+            contactPage.Add("contactList", ContactList);
+            //contactPage.Add("number", MobileNumber);
+            await _navigationService.NavigateAsync("ContactsCollectionView",contactPage);
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            
         }
     }
     public class Contacts

@@ -4,34 +4,6 @@
              xmlns:prism="http://prismlibrary.com"
              x:Class="PrismSampleApp.App">
     <Application.Resources>
-
-        <!-- Application resource dictionary -->
-        <Color x:Key="PrimaryColor">Maroon</Color>
-        <Color x:Key="AccentColor">violet</Color>
-        <Color x:Key="TextColor">White</Color>
-
-        <Style TargetType="TabbedPage">
-            <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
-            <Setter Property="BarTextColor" Value="{StaticResource TextColor}" />
-            <Setter Property="SelectedTabColor" Value="{StaticResource AccentColor}" />
-            <Setter Property="UnselectedTabColor" Value="{StaticResource PrimaryColor}" />
-        </Style>
-
-        <Style TargetType="NavigationPage">
-            <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
-            <Setter Property="BarTextColor" Value="{StaticResource TextColor}" />
-        </Style>
-
-        <Style TargetType="Button">
-            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
-            <Setter Property="TextColor" Value="{StaticResource TextColor}" />
-            <Setter Property="CornerRadius" Value="15" />
-        </Style>
-
-        <Style TargetType="Button" x:Key="DarkButton">
-            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
-            <Setter Property="TextColor" Value="{StaticResource TextColor}" />
-            <Setter Property="CornerRadius" Value="15" />
-        </Style>
+        
     </Application.Resources>
 </prism:PrismApplication>

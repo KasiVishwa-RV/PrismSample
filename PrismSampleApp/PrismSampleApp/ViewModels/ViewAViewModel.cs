@@ -27,7 +27,6 @@ namespace PrismSampleApp.ViewModels
         }
         public ViewAViewModel(INavigationService navigationService)
         {
-            Title = "View A";
             _navigationService = navigationService;
         }
         private DelegateCommand _navigateCommand;

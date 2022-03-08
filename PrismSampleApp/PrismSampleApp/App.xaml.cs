@@ -1,5 +1,8 @@
+
 using Prism;
 using Prism.Ioc;
+using PrismSampleApp.Services;
+using PrismSampleApp.Services.Interfaces;
 using PrismSampleApp.ViewModels;
 using PrismSampleApp.Views;
 using Xamarin.Essentials.Implementation;
@@ -25,6 +28,7 @@ namespace PrismSampleApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+            containerRegistry.RegisterSingleton<IWebApiService, WebApiService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();

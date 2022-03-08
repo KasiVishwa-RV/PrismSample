@@ -1,42 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
+             xmlns:prism="http://prismlibrary.com" 
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="PrismSampleApp.Views.WebAPIPage"
-             BackgroundColor="PeachPuff">
-    <StackLayout>
-        <Button Text="View List" Command="{Binding ClickCommand}"/>
-        <ScrollView>
-            <ListView BackgroundColor="AliceBlue" ItemsSource="{Binding Content}">
-            <ListView.ItemTemplate>
+             x:Class="PrismSampleApp.Views.WebAPIPage">
+    <StackLayout Spacing="10" BackgroundColor="DeepSkyBlue">
+        <Frame BackgroundColor="LavenderBlush">
+            <ListView ItemsSource="{Binding ApiContacts}" BackgroundColor="Accent" IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="50">
-                            <Grid Padding="10">
-                                <Frame CornerRadius="20"
-                               HasShadow="True">
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout Spacing="10" VerticalOptions="Center">
-                                            <Label VerticalOptions="Center" FontSize="Large" Text="{Binding Name.First}" LineBreakMode="CharacterWrap" BackgroundColor="Beige" TextDecorations="Underline"/>
-                                            <Label VerticalOptions="Center" FontSize="Large" Text="{Binding Dob.Date}"/>
-                                        </StackLayout>
-                                    </StackLayout>
+                        <ViewCell>
+                            <Grid VerticalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Frame BackgroundColor="LightCyan">
+                                    <Label FontSize="Medium" Text="{Binding Name.First}" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding ItemTappedCommand}"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </Frame>
+                                <Image Aspect="AspectFit" Source="{Binding Picture.Thumbnail}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                </Image>
                             </Grid>
                         </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 <ListView.Header>
-                    <StackLayout BackgroundColor="Crimson" Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text="Random Users"/>
-                    </StackLayout>
-                </ListView.Header>
-                <ListView.Footer>
-                    <StackLayout BackgroundColor="GreenYellow" Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                        <Label Text="Load more"/>
-                    </StackLayout>
-                </ListView.Footer>
-            </ListView>
-    </ScrollView>
+                <StackLayout BackgroundColor="Crimson" >
+                        <Button Command="{Binding ClickCommand}" Text="Random Users"/>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.Footer>
+                <StackLayout BackgroundColor="GreenYellow">
+                    <Button Command="{Binding ClickCommand}" Text="Load more"/>
+                </StackLayout>
+            </ListView.Footer>
+        </ListView>
+        </Frame>
     </StackLayout>
 </ContentPage>

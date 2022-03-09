@@ -1,7 +1,10 @@
-﻿using Prism.Commands;
+﻿using Flurl.Http;
+using Prism.Commands;
 using Prism.Common;
 using Prism.Mvvm;
 using Prism.Navigation;
+using PrismSampleApp.Model;
+using PrismSampleApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,28 +14,36 @@ using System.Runtime.CompilerServices;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class ViewContactListViewModel : ViewModelBase, INavigationAware
+    public class ViewContactListViewModel : ViewModelBase, INavigationAware, IWebApiService
     {
-        public ViewContactListViewModel(INavigationService navigationService) : base(navigationService)
+        public ViewContactListViewModel(INavigationService navigationService,IWebApiService webApiService) : base(navigationService)
         {
-            
+            _webApiService = webApiService;
         }
-        private ObservableCollection<Contacts> _modelList;
-        public ObservableCollection<Contacts> ModelList
+        private List<Result> _content;
+        public List<Result> Content
         {
             get
             {
-                return _modelList;
+                return _content;
             }
             set
             {
-                SetProperty(ref _modelList, value);
+                SetProperty(ref _content, value);
             }
+
         }
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public List<Result> RecievedContacts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        private IWebApiService _webApiService;
+        public void OnNavigatedTo()
         {
-           var contactList = parameters.GetValue<ObservableCollection<Contacts>>("contactList");
-            ModelList = new ObservableCollection<Contacts>(contactList);
+            IntializingService();
+        }
+        public void IntializingService()
+        {
+            _webApiService.IntializingService();
+            Content = _webApiService.RecievedContacts;
         }
     }
 }

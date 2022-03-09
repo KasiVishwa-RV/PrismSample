@@ -1,67 +1,81 @@
 ﻿using Newtonsoft.Json;
-using Prism.Commands;
 using Prism.Mvvm;
 using PrismSampleApp.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Net.Http;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Flurl;
+using Flurl.Http;
+using Prism.Navigation;
+using PrismSampleApp.Services;
+using System.Collections.ObjectModel;
+using PrismSampleApp.Services.Interfaces;
 
 namespace PrismSampleApp.ViewModels
-{ 
-    public class WebAPIPageViewModel : BindableBase
+{
+    public class WebAPIPageViewModel : BindableBase, INavigationAware,IWebApiService
     {
-        public WebAPIPageViewModel()
+        public WebAPIPageViewModel(INavigationService navigationService,IWebApiService webApiService)
         {
             ClickCommand = new Command(ClickCommandHandler);
+            ItemTappedCommand = new Command(ItemTappedCommandHandler);
+            _navigationService = navigationService;
+            _webApiService = webApiService;
         }
         public ICommand ClickCommand { get; set; }
-        private async void ClickCommandHandler()
+        public ICommand ItemTappedCommand { get; set; }
+
+        private INavigationService _navigationService;
+        private IWebApiService _webApiService;
+        private void ClickCommandHandler()
         {
-            string url =await client.GetStringAsync(WebUrl);
-            var collection = JsonConvert.DeserializeObject<Root>(url);
-            Content = new List<Result>(collection.Results);
-
+            IntializingService();
         }
+        private int tapCount = 0;
+        private async void ItemTappedCommandHandler()
+        {
 
-        public const string WebUrl = "https://randomuser.me/api/?results=50";
-        public HttpClient client = new HttpClient();
-        private Root _itemsSource;
-        public event PropertyChangedEventHandler PropertyChanged;
-        public Root ItemsSource
+            tapCount++;
+            if (tapCount % 2 != 0)
+            {
+                await _navigationService.NavigateAsync("ViewContactList");
+            }
+        }
+        private List<Result> _apiContacts;
+        public List<Result> ApiContacts
         {
             get
             {
-                return _itemsSource;
-            }
-
-            set
-            {
-                _itemsSource = value;
-                RaisepropertyChanged("ItemsSource");
-            }
-        }
-        private List<Result> _content;
-        public List<Result> Content
-        {
-            get
-            {
-                return _content;
+                return _apiContacts;
             }
             set
             {
-                SetProperty(ref _content, value);
+                SetProperty(ref _apiContacts, value);
             }
 
         }
 
-        private void RaisepropertyChanged(string v)
+        public INavigationService NavigationService => _navigationService;
+
+        public List<Result> RecievedContacts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
+            
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            
+        }
+
+        public void IntializingService()
+        {
+            _webApiService.IntializingService();
+            ApiContacts = _webApiService.RecievedContacts;
         }
     }
 }

@@ -12,8 +12,10 @@ using Xamarin.Forms;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class MainPageViewModel : BindableBase, IConfirmNavigationAsync, INavigationAware
+    public class MainPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _pageDialogService;
         private string _title;
         public string Title
         {
@@ -31,24 +33,22 @@ namespace PrismSampleApp.ViewModels
         {
             Title = "Main Page";
             _navigationService = navigationService;
-            _dialogService = pageDialogService;
-            NavigateCommandA = new Command(ExecuteNavigateCommandA);
-            NavigateCommandB = new Command(ExecuteNavigateCommandB);
-            NavigateCommandC = new Command(ExecuteNavigateCommandC);
-            NavigateCommandD = new Command(ExecuteNavigateCommandD);
+            _pageDialogService = pageDialogService;
+            NavigateToACommand = new Command(ExecuteNavigateCommandA);
+            NavigateToBCommand = new Command(ExecuteNavigateCommandB);
+            NavigateToCCommand = new Command(ExecuteNavigateCommandC);
+            
         }
-        private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
 
-        public ICommand NavigateCommandA { get; set; }
-        public ICommand NavigateCommandB { get; set; }
-        public ICommand NavigateCommandC{ get; set; }
+        public ICommand NavigateToACommand { get; set; }
+        public ICommand NavigateToBCommand { get; set; }
+        public ICommand NavigateToCCommand{ get; set; }
 
         private async void ExecuteNavigateCommandA()
         {
             var viewA = new NavigationParameters();
             viewA.Add("title", "Hello from MainPage");
-            await _navigationService.NavigateAsync("ViewA", viewA);
+            await _navigationService.NavigateAsync("ViewAPage", viewA);
         }
         private async void ExecuteNavigateCommandB()
         {
@@ -56,34 +56,18 @@ namespace PrismSampleApp.ViewModels
             var viewB = new NavigationParameters();
             viewB.Add("title", "Hello from MainPage");
 
-            await _navigationService.NavigateAsync("ViewB", viewB);
+            await _navigationService.NavigateAsync("ViewBPage", viewB);
         }
         private async void ExecuteNavigateCommandC()
         {
 
             var viewC = new NavigationParameters();
             viewC.Add("title", "Hello from MainPage");
-            await _navigationService.NavigateAsync("ViewC", viewC);
+            await _navigationService.NavigateAsync("ViewCPage", viewC);
         }
-        public ICommand NavigateCommandD { get; set; }
-        async void ExecuteNavigateCommandD()
-        {
-            await _navigationService.NavigateAsync("ViewModelLocator");
-        }
-
         public Task<bool> CanNavigateAsync(INavigationParameters parameters)
         {
-            return _dialogService.DisplayAlertAsync(Title, "Navigate", "Yes", "No");
-
-        }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
+            return _pageDialogService.DisplayAlertAsync(Title, "Navigate", "Yes", "No");
 
         }
     }

@@ -14,9 +14,9 @@ using System.Runtime.CompilerServices;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class ViewContactListViewModel : ViewModelBase, INavigationAware, IWebApiService
+    public class ViewContactListPageViewModel : ViewModelBase
     {
-        public ViewContactListViewModel(INavigationService navigationService,IWebApiService webApiService) : base(navigationService)
+        public ViewContactListPageViewModel(INavigationService navigationService,IWebApiService webApiService)
         {
             _webApiService = webApiService;
         }
@@ -40,10 +40,10 @@ namespace PrismSampleApp.ViewModels
         {
             IntializingService();
         }
-        public void IntializingService()
+        public async void IntializingService()
         {
-            _webApiService.IntializingService();
-            Content = _webApiService.RecievedContacts;
+            var a= _webApiService.IntializingService();
+            Content =await a;
         }
     }
 }

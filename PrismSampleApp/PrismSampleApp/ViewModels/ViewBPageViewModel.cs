@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class ViewBViewModel : BindableBase, INavigationAware
+    public class ViewBPageViewModel : ViewModelBase
     {
         private string _title;
         public string Title
@@ -24,19 +24,19 @@ namespace PrismSampleApp.ViewModels
             }
         }
 
-        public ViewBViewModel(INavigationService navigationService)
+        public ViewBPageViewModel(INavigationService navigationService)
         {
             Title = "View B";
             _navigationService = navigationService;
         }
         private DelegateCommand _navigateCommand;
         private readonly INavigationService _navigationService;
-        public DelegateCommand NavigateCommandC =>
+        public DelegateCommand NavigateToCCommand =>
             _navigateCommand ?? (_navigateCommand = new DelegateCommand(ExecuteNavigateCommandC));
 
         async void ExecuteNavigateCommandC()
         {
-            await _navigationService.NavigateAsync("ViewC");
+            await _navigationService.NavigateAsync("ViewCPage");
         }
         private DelegateCommand _navigateCommandMainPage;
         public DelegateCommand GoHomeCommand =>

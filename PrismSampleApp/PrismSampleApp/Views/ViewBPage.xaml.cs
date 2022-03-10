@@ -2,9 +2,9 @@
 
 namespace PrismSampleApp.Views
 {
-    public partial class ViewModelLocator : ContentPage
+    public partial class ViewBPage : ContentPage
     {
-        public ViewModelLocator()
+        public ViewBPage()
         {
             InitializeComponent();
         }

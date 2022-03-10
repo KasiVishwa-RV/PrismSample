@@ -7,9 +7,9 @@ using Xamarin.Forms;
 
 namespace PrismSampleApp.Views
 {
-    public partial class WebAPIPage : ContentPage
+    public partial class HomePage : ContentPage
     {
-        public WebAPIPage()
+        public HomePage()
         {
             InitializeComponent();
         }

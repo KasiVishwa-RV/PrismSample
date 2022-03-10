@@ -13,9 +13,12 @@ using Prism.Services;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class LoginPageViewModel : INavigatedAware, INotifyPropertyChanged
+    public class LoginPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private string _title;
+        private string _username;
+        private string _password;
         public string Title
         {
             get
@@ -25,22 +28,19 @@ namespace PrismSampleApp.ViewModels
             }
             set
             {
-                _title = value;
-                OnPropertyChanged(nameof(Title));
+                SetProperty(ref _title,value);
             }
         }
-        public LoginPageViewModel(INavigationService navigationService)
+        public LoginPageViewModel(INavigationService NavigationService)
         {
-            _navigationService = navigationService;
+            _navigationService = NavigationService;
             Title = "Login Page";
             NavigateCommand = new Command(ExecuteNavigateCommand);
         }
 
-        private readonly INavigationService _navigationService;
 
         public ICommand NavigateCommand { get; set; }
 
-        private string _username;
         public string Username
         {
             get
@@ -49,11 +49,9 @@ namespace PrismSampleApp.ViewModels
             }
             set
             {
-                _username = value;
-                OnPropertyChanged(nameof(Username));
+                SetProperty(ref _username, value);
             }
         }
-        private string _password;
         public string Password
         {
             get
@@ -62,17 +60,8 @@ namespace PrismSampleApp.ViewModels
             }
             set
             {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+               SetProperty(ref _password , value);
+                
             }
         }
         private async void ExecuteNavigateCommand()
@@ -81,15 +70,6 @@ namespace PrismSampleApp.ViewModels
             {
                 await _navigationService.NavigateAsync("MainPage");
             }
-        }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-
         }
     }
 }

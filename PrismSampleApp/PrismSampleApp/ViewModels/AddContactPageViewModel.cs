@@ -12,9 +12,14 @@ using Xamarin.Forms;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class AddContactViewModel : BindableBase, INotifyPropertyChanged,INavigationAware
+    public class AddContactPageViewModel : ViewModelBase
     {
-        public AddContactViewModel(INavigationService navigationService)
+        private readonly INavigationService _navigationService;
+        private ObservableCollection<Contacts> _contactList;
+        private string _contactName;
+        
+        private string _mobileNumber;
+        public AddContactPageViewModel(INavigationService navigationService)
         {
             ContactCommand = new Command(ContactCommandHandler);
             _navigationService = navigationService;
@@ -27,7 +32,6 @@ namespace PrismSampleApp.ViewModels
                 ContactList.Add(new Contacts { Name = ContactName, Number = MobileNumber }); ;
             });
         }
-        private ObservableCollection<Contacts> _contactList;
         public ObservableCollection<Contacts> ContactList
         {
             get
@@ -39,12 +43,10 @@ namespace PrismSampleApp.ViewModels
                 SetProperty(ref _contactList, value);
             }
         }
-        private readonly INavigationService _navigationService;
         public ICommand AddCommand { get; set; }
         public ICommand ContactCommand { get; set; }
 
 
-        private string _contactName;
         public string ContactName
         {
             get
@@ -56,7 +58,6 @@ namespace PrismSampleApp.ViewModels
                 SetProperty(ref _contactName, value);
             }
         }
-        private string _mobileNumber;
         public string MobileNumber
         {
             get
@@ -73,17 +74,7 @@ namespace PrismSampleApp.ViewModels
             var contactPage = new NavigationParameters();
             contactPage.Add("contactList", ContactList);
             //contactPage.Add("number", MobileNumber);
-            await _navigationService.NavigateAsync("ContactsCollectionView",contactPage);
-        }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            
+            await _navigationService.NavigateAsync("ViewContactListPage",contactPage);
         }
     }
     public class Contacts

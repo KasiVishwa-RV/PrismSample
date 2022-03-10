@@ -22,40 +22,55 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddContactPage.xaml.cs">
+      <DependentUpon>AddContactPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddPersonPage.xaml.cs">
+      <DependentUpon>AddPersonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewAPage.xaml.cs">
+      <DependentUpon>ViewAPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewBPage.xaml.cs">
+      <DependentUpon>ViewBPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewCPage.xaml.cs">
+      <DependentUpon>ViewCPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewContactListPage.xaml.cs">
+      <DependentUpon>ViewContactListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddContact.xaml">
+    <EmbeddedResource Update="Views\AddContactPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddPerson.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ContactsCollectionView.xaml">
+    <EmbeddedResource Update="Views\AddPersonPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPageLoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewA.xaml">
+    <EmbeddedResource Update="Views\ViewAPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewB.xaml">
+    <EmbeddedResource Update="Views\ViewBPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewC.xaml">
+    <EmbeddedResource Update="Views\ViewCPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewContactList.xaml">
+    <EmbeddedResource Update="Views\ViewContactListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewModelLocator.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\WebAPIPage.xaml">
+    <EmbeddedResource Update="Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -1,11 +1,11 @@
 ﻿using PrismSampleApp.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PrismSampleApp.Services.Interfaces
 {
     public interface IWebApiService
-    { 
-       List<Result> RecievedContacts { get; set; }   
-       void IntializingService();
+    {
+    Task<List<Result>> IntializingService();
     }
 }

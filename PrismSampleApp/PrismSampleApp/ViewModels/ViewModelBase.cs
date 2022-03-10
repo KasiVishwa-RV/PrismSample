@@ -9,43 +9,8 @@ using System.Text;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible,IWebApiService
+    public class ViewModelBase : BindableBase
     {
-        protected INavigationService NavigationService { get; private set; }
-
-
-        public List<Result> RecievedContacts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public ViewModelBase(INavigationService navigationService)
-        {
-            NavigationService = navigationService;
-        }
-
-        
-
-        public virtual void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
-        }
-
-        public virtual void OnNavigatedTo(INavigationParameters parameters)
-        {
-
-        }
-
-        public virtual void Destroy()
-        {
-
-        }
-
-        public void IntializingService()
-        {
-           
-        }
-
-        public void Initialize(INavigationParameters parameters)
-        {
-           
-        }
+       
     }
 }

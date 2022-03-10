@@ -2,9 +2,9 @@
 
 namespace PrismSampleApp.Views
 {
-    public partial class ContactsCollectionView : ContentPage
+    public partial class ViewAPage : ContentPage
     {
-        public ContactsCollectionView()
+        public ViewAPage()
         {
             InitializeComponent();
         }

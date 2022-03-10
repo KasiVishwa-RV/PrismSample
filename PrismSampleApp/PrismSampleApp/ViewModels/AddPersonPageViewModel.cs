@@ -8,9 +8,9 @@ using System.Linq;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class AddPersonViewModel : BindableBase
+    public class AddPersonPageViewModel : ViewModelBase
     {
-        public AddPersonViewModel()
+        public AddPersonPageViewModel()
         {
             PersonList = new ObservableCollection<PersonModel>
             {

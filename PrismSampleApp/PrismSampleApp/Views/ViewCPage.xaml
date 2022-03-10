@@ -3,14 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="PrismSampleApp.Views.ViewC"
+             x:Class="PrismSampleApp.Views.ViewCPage"
              Title="View C">
     <StackLayout>
 
         <Label Text="{Binding Title}"/>
         <Button Text="Main Page"
-            Command="{Binding GoHomeCommand}"
-            Style="{StaticResource DarkButton}"/>
+            Command="{Binding GoHomeCommand}"/>
 
     </StackLayout>
 

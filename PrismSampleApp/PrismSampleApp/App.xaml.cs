@@ -22,7 +22,7 @@ namespace PrismSampleApp
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/WebAPIPage");
+            await NavigationService.NavigateAsync("NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,16 +32,14 @@ namespace PrismSampleApp
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
-            containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
-            containerRegistry.RegisterForNavigation<ViewC, ViewCViewModel>();
-            containerRegistry.RegisterForNavigation<ViewModelLocator, ViewModelLocatorViewModel>();
+            containerRegistry.RegisterForNavigation<ViewAPage, ViewAPageViewModel>();
+            containerRegistry.RegisterForNavigation<ViewBPage, ViewBPageViewModel>();
+            containerRegistry.RegisterForNavigation<ViewCPage, ViewCPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
-            containerRegistry.RegisterForNavigation<AddContact, AddContactViewModel>();
-            containerRegistry.RegisterForNavigation<ViewContactList, ViewContactListViewModel>();
-            containerRegistry.RegisterForNavigation<AddPerson, AddPersonViewModel>();
-            containerRegistry.RegisterForNavigation<ContactsCollectionView, ContactsCollectionViewViewModel>();
-            containerRegistry.RegisterForNavigation<WebAPIPage, WebAPIPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddContactPage, AddContactPageViewModel>();
+            containerRegistry.RegisterForNavigation<ViewContactListPage, ViewContactListPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddPersonPage, AddPersonPageViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
         }
     }
 }

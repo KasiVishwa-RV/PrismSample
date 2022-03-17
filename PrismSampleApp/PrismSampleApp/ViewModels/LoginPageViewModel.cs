@@ -13,9 +13,10 @@ using Prism.Services;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class LoginPageViewModel : ViewModelBase
+    public class LoginPageViewModel :ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _pageDialogService;
         private string _title;
         private string _username;
         private string _password;
@@ -31,15 +32,15 @@ namespace PrismSampleApp.ViewModels
                 SetProperty(ref _title,value);
             }
         }
-        public LoginPageViewModel(INavigationService NavigationService)
+        public LoginPageViewModel(INavigationService NavigationService,IPageDialogService pageDialogService)
         {
             _navigationService = NavigationService;
             Title = "Login Page";
-            NavigateCommand = new Command(ExecuteNavigateCommand);
+            _pageDialogService = pageDialogService;
+            LoginCommand = new Command(LoginCommandHandler);
         }
 
-
-        public ICommand NavigateCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
 
         public string Username
         {
@@ -64,11 +65,15 @@ namespace PrismSampleApp.ViewModels
                 
             }
         }
-        private async void ExecuteNavigateCommand()
+        public async void LoginCommandHandler()
         {
-            if (Username == "admin" && Password == "123")
+            if (Username == "admin" && Password =="123")
             {
                 await _navigationService.NavigateAsync("MainPage");
+            }
+            else
+            {
+                await _pageDialogService.DisplayAlertAsync("LoginPage", "Wrong Credentials", "Retry");
             }
         }
     }

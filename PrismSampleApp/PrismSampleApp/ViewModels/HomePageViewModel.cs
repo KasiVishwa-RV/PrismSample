@@ -4,23 +4,28 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Prism.Navigation;
 using PrismSampleApp.Services.Interfaces;
+using System;
 
 namespace PrismSampleApp.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private readonly IWebApiService _webApiService;
-        private INavigationService _navigationService;
         public HomePageViewModel(INavigationService navigationService,IWebApiService webApiService)
         {
             ClickCommand = new Command(ClickCommandHandler);
-            //ItemTappedCommand = new Command(ItemTappedCommandHandler);
+            ItemSelectedCommand = new Command(ItemSelectedCommandHandler);
             _navigationService = navigationService;
             _webApiService = webApiService;
         }
-        public ICommand ClickCommand { get; set; }
-        public ICommand ItemTappedCommand { get; set; }
+        private async void ItemSelectedCommandHandler()
+        { 
+            await _navigationService.NavigateAsync("ViewContactListPage");
+        }
 
+        public ICommand ClickCommand { get; set; }
+        public ICommand ItemSelectedCommand { get; set; }
         private void ClickCommandHandler()
         {
             IntializingService();
@@ -36,11 +41,9 @@ namespace PrismSampleApp.ViewModels
             {
                 SetProperty(ref _apiContacts, value);
             }
-
         }
         public async void IntializingService()
         {
-
            var a = _webApiService.IntializingService();
             ApiContacts = await a;
         }

@@ -7,15 +7,16 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismSampleApp.Views.LoginPage"
              Title="{Binding Title}"
-             BackgroundColor="lightblue">
+             BackgroundImageSource="background.png">
 
     
     <StackLayout VerticalOptions="Center">
-        <Entry Text="{Binding Username}" Placeholder="Name"/>
-        <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True"/>
-        <Button Text="Sign in" 
-                VerticalOptions="Center" 
-                Command="{Binding NavigateCommand}" 
-                CommandParameter="/NavigationPage/MainPage"/>
+        <Frame HeightRequest="40" WidthRequest="30" BorderColor="Black" BackgroundColor="#00FFFFFF">
+        <Entry PlaceholderColor="LightPink" TextColor="HotPink" Text="{Binding Username}" VerticalOptions="CenterAndExpand" Placeholder="Name"/>
+        </Frame>
+        <Frame HeightRequest="40" WidthRequest="30" BorderColor="Black" BackgroundColor="#00FFFFFF">
+        <Entry Text="{Binding Password}" PlaceholderColor="Gold" TextColor="DarkGoldenrod" VerticalOptions="CenterAndExpand" Placeholder="Password" IsPassword="True"/>
+        </Frame>
+        <Button Text="Sign in" VerticalOptions="Center" Command="{Binding LoginCommand}" CommandParameter="/NavigationPage/MainPage"/>
     </StackLayout>
 </ContentPage>

@@ -15,17 +15,17 @@ namespace PrismSampleApp.ViewModels
         public HomePageViewModel(INavigationService navigationService,IWebApiService webApiService)
         {
             ClickCommand = new Command(ClickCommandHandler);
-            ItemSelectedCommand = new Command(ItemSelectedCommandHandler);
+            ItemTappedCommand = new Command(ItemTappedCommandHandler);
             _navigationService = navigationService;
             _webApiService = webApiService;
         }
-        private async void ItemSelectedCommandHandler()
+        private async void ItemTappedCommandHandler()
         { 
             await _navigationService.NavigateAsync("ViewContactListPage");
         }
 
         public ICommand ClickCommand { get; set; }
-        public ICommand ItemSelectedCommand { get; set; }
+        public ICommand ItemTappedCommand { get; set; }
         private void ClickCommandHandler()
         {
             IntializingService();

@@ -11,13 +11,13 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace PrismSampleApp.UnitTest
 {
-    public class UnitTest
+    public class LoginPageTest
     {
         private readonly Mock<INavigationService> NavigationService;
         private readonly Mock<IPageDialogService> PageDialogService;
         private readonly LoginPageViewModel viewModel;
         private readonly Fixture _fixture = new Fixture();
-        public UnitTest()
+        public LoginPageTest()
         {
             NavigationService = new Mock<INavigationService>();
             PageDialogService = new Mock<IPageDialogService>();

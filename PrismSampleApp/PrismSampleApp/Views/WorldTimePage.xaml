@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrismSampleApp.Views.WorldTimePage"
+             xmlns:prism="http://prismlibrary.com"
+            xmlns:viewmodels="clr-namespace:PrismSampleApp.ViewModels" 
+            x:DataType="viewmodels:WorldTimePageViewModel"
+            prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage Title="Tab 1">
+        <StackLayout>
+            <Button Text="Show Time" Command="{Binding ShowTimeACommand}"/>
+            <Label Text="{Binding Time}"/>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Tab 2">
+        <StackLayout>
+            <Button Text="Show Time" Command="{Binding ShowTimeBCommand}"/>
+            <Label Text="{Binding Time}"/>
+        </StackLayout>
+    </ContentPage>
+    <!--<ContentPage Title="Tab 3">
+        <StackLayout>
+            <Button Text="Show Time" Command="{Binding ApplicationCommands.ShowAllCommand}"/>
+            <Label Text="{Binding Time}"/>
+        </StackLayout>
+    </ContentPage>-->
+    <ContentPage Title="Tab 4">
+        <StackLayout>
+            <Button Text="Show All Time" Command="{Binding ApplicationCommands.ShowAllCommand}"/>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

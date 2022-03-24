@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Prism.AppModel;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -12,7 +13,7 @@ using Xamarin.Forms;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ViewModelBase , IPageLifecycleAware
     {
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _pageDialogService;
@@ -34,15 +35,15 @@ namespace PrismSampleApp.ViewModels
             Title = "Main Page";
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
-            NavigateToACommand = new Command(ExecuteNavigateCommandA);
-            NavigateToBCommand = new Command(ExecuteNavigateCommandB);
-            NavigateToCCommand = new Command(ExecuteNavigateCommandC);
+            NavigateToACommand = new DelegateCommand(ExecuteNavigateCommandA);
+            NavigateToBCommand = new DelegateCommand(ExecuteNavigateCommandB);
+            NavigateToCCommand = new DelegateCommand(ExecuteNavigateCommandC);
             
         }
 
-        public ICommand NavigateToACommand { get; set; }
-        public ICommand NavigateToBCommand { get; set; }
-        public ICommand NavigateToCCommand{ get; set; }
+        public DelegateCommand NavigateToACommand { get; set; }
+        public DelegateCommand NavigateToBCommand { get; set; }
+        public DelegateCommand NavigateToCCommand{ get; set; }
 
         private async void ExecuteNavigateCommandA()
         {
@@ -69,6 +70,15 @@ namespace PrismSampleApp.ViewModels
         {
             return _pageDialogService.DisplayAlertAsync(Title, "Navigate", "Yes", "No");
 
+        }
+        public async  void OnAppearing()
+        {
+            await _pageDialogService.DisplayAlertAsync("MainPage","We are appearing","ok");
+        }
+
+        public async void OnDisappearing()
+        {
+            await _pageDialogService.DisplayAlertAsync("MainPage", "We are disappearing", "ok");
         }
     }
 }

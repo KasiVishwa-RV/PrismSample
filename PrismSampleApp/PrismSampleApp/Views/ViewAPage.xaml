@@ -16,6 +16,8 @@
               HorizontalOptions="FillAndExpand"/>
         <Button Text="Main Page"
             Command="{Binding GoHomeCommand}"/>
+        <Button Text="Show Time" Command="{Binding ShowTimeACommand}"/>
+        <Label Text="{Binding Time}"/>
     </StackLayout>
 
 </ContentPage>

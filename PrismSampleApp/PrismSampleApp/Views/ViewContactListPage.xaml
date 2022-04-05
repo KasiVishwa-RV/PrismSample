@@ -3,34 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             BackgroundImageSource="background.png"
              x:Class="PrismSampleApp.Views.ViewContactListPage">
     <StackLayout>
-        <ListView ItemsSource="{Binding Content}">
+        <ListView RowHeight="80" ItemsSource="{Binding Content}">
             <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <Frame BackgroundColor="LightSkyBlue" CornerRadius="10">
-                        <Grid HeightRequest="100" Padding="30,20,20,0" VerticalOptions="CenterAndExpand" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                    <ViewCell>
+                        <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Text="Gender:" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"   HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black"/>
-                            <Label Text="{Binding Gender}" Grid.Row="0" Grid.Column="1"    HorizontalOptions="Start" VerticalOptions="Center" TextColor="White"/>
-                            <Label Text="Location:" Grid.Row="1" Grid.Column="0"  FontAttributes="Bold" VerticalOptions="CenterAndExpand" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="Start" />
-                            <Label Text="{Binding Location.City}" Grid.Row="1" Grid.Column="1"  HorizontalOptions="Start" VerticalOptions="Center" TextColor="White"/>
-                            <Label Text="DOB:" Grid.Row="2" Grid.Column="0" FontAttributes="Bold"   HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black"/>
-                            <Label Text="{Binding Dob.Date}" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" />
-                            <Label Text="Phone:" Grid.Row="3" Grid.Column="0" FontAttributes="Bold"   HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black"/>
-                            <Label Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" VerticalOptions="CenterAndExpand" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Gender:" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Gender}" Grid.Row="0" Grid.Column="1" TextColor="White"/>
+                            <Label Text="Location:" Grid.Row="1" Grid.Column="0"  FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Location.City}" Grid.Row="1" Grid.Column="1" TextColor="White"/>
+                            <Label Text="DOB:" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Dob.Date}" Grid.Row="2" Grid.Column="1" TextColor="White"/>
+                            <Label Text="Phone:" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" TextColor="White" />
                         </Grid>
-                    </Frame>
-                </ViewCell>
+                    </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
         </ListView>

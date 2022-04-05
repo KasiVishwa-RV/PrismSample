@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using PrismSampleApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,31 @@ namespace PrismSampleApp.ViewModels
                 SetProperty(ref _title, value);
             }
         }
-
-        public ViewBPageViewModel(INavigationService navigationService)
+        private string _time;
+        public string Time
+        {
+            get
+            {
+                return _time;
+            }
+            set
+            {
+                SetProperty(ref _time, value);
+            }
+        }
+        public void ShowTimeCommandHandler()
+        {
+            Time = $"Time: {DateTime.Now}";
+        }
+        public ViewBPageViewModel(INavigationService navigationService,IApplicationCommands applicationCommands)
         {
             Title = "View B";
             _navigationService = navigationService;
+            ShowTimeBCommand = new DelegateCommand(ShowTimeCommandHandler);
+            applicationCommands.ShowAllCommand.RegisterCommand(ShowTimeBCommand);
         }
         private DelegateCommand _navigateCommand;
+        public DelegateCommand ShowTimeBCommand { get; set; }
         private readonly INavigationService _navigationService;
         public DelegateCommand NavigateToCCommand =>
             _navigateCommand ?? (_navigateCommand = new DelegateCommand(ExecuteNavigateCommandC));

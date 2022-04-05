@@ -14,11 +14,11 @@ using System.Runtime.CompilerServices;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class ViewContactListPageViewModel : ViewModelBase
+    public class ViewContactListPageViewModel : ViewModelBase , INavigatedAware
     {
-        public ViewContactListPageViewModel(INavigationService navigationService,IWebApiService webApiService)
+        public ViewContactListPageViewModel()
         {
-            _webApiService = webApiService;
+            
         }
         private List<Result> _content;
         public List<Result> Content
@@ -33,17 +33,15 @@ namespace PrismSampleApp.ViewModels
             }
 
         }
-        public List<Result> RecievedContacts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        private IWebApiService _webApiService;
-        public void OnNavigatedTo()
+        public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            IntializingService();
+            
         }
-        public async void IntializingService()
+
+        public void OnNavigatedTo(INavigationParameters parameters)
         {
-            var a= _webApiService.IntializingService();
-            Content =await a;
+            var res = parameters.GetValue<List<Result>>("TappedData");
+            Content = res;
         }
     }
 }

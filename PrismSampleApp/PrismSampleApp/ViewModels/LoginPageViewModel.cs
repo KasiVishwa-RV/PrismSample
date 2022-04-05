@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Prism.Services;
+using PrismSampleApp.Views;
+using PrismSampleApp.Services.Interfaces;
 
 namespace PrismSampleApp.ViewModels
 {
@@ -17,6 +19,7 @@ namespace PrismSampleApp.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _pageDialogService;
+        private static ILogger logger = DependencyService.Get<ILogManager>().GetLog();
         private string _title;
         private string _username;
         private string _password;
@@ -38,10 +41,11 @@ namespace PrismSampleApp.ViewModels
             Title = "Login Page";
             _pageDialogService = pageDialogService;
             LoginCommand = new Command(LoginCommandHandler);
+            SendMessageCommand = new Command(SendMessageCommandHandler);
         }
 
         public ICommand LoginCommand { get; set; }
-
+        public ICommand SendMessageCommand { get; set; }
         public string Username
         {
             get
@@ -65,9 +69,14 @@ namespace PrismSampleApp.ViewModels
                 
             }
         }
+        public void SendMessageCommandHandler()
+        {
+                MessagingCenter.Send<LoginPageViewModel, DateTime>(this, "tick", DateTime.Now);
+        }
         public async void LoginCommandHandler()
         {
-            if (Username == "admin" && Password =="123")
+            logger.Info("Logging");
+            if (Username == "admin" && Password == "123")
             {
                 await _navigationService.NavigateAsync("MainPage");
             }

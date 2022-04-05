@@ -10,7 +10,7 @@
         <Label Text="{Binding Title}"/>
         <Button Text="Main Page"
             Command="{Binding GoHomeCommand}"/>
-
+        <Button Text="Show All Time" Command="{Binding ApplicationCommands.ShowAllCommand}"/>
     </StackLayout>
 
 </ContentPage>

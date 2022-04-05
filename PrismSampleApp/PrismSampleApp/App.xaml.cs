@@ -1,16 +1,16 @@
 
 using Prism;
 using Prism.Ioc;
-using Prism.Modularity;
 using PrismSampleApp.ApplicationCommand;
 using PrismSampleApp.Services;
 using PrismSampleApp.Services.Interfaces;
 using PrismSampleApp.ViewModels;
 using PrismSampleApp.Views;
-using System.Threading.Tasks;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
+using PrismSampleApp.Resx;
+using Xamarin.CommunityToolkit.Helpers;
 
 namespace PrismSampleApp
 {
@@ -23,8 +23,9 @@ namespace PrismSampleApp
 
         protected override async void OnInitialized()
         {
+            LocalizationResourceManager.Current.Init(AppResource.ResourceManager);
             InitializeComponent();
-            await NavigationService.NavigateAsync("NavigationPage/WorldTimePage");
+            await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,6 +33,9 @@ namespace PrismSampleApp
             containerRegistry.Register<IWebApiService,WebApiService>();
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
+            containerRegistry.RegisterSingleton<ILogger>();
+            containerRegistry.RegisterSingleton<ILogManager>();
+
 
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
@@ -43,8 +47,9 @@ namespace PrismSampleApp
             containerRegistry.RegisterForNavigation<AddContactPage, AddContactPageViewModel>();
             containerRegistry.RegisterForNavigation<ViewContactListPage, ViewContactListPageViewModel>();
             containerRegistry.RegisterForNavigation<AddPersonPage, AddPersonPageViewModel>();
+            containerRegistry.RegisterForNavigation<ApiContactsPage, ApiContactsPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-            containerRegistry.RegisterForNavigation<WorldTimePage, WorldTimePageViewModel>();
+            containerRegistry.RegisterForNavigation<MessagingCenterPage, MessagingCenterPageViewModel>();
         }
         protected override void OnStart()
         {

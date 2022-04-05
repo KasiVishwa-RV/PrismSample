@@ -1,51 +1,51 @@
-﻿using PrismSampleApp.Model;
+﻿using Prism.Commands;
+using Prism.Navigation;
+using PrismSampleApp.ApplicationCommand;
+using PrismSampleApp.Services.Interfaces;
+using PrismSampleApp.Views;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Prism.Navigation;
-using PrismSampleApp.Services.Interfaces;
-using System;
 
 namespace PrismSampleApp.ViewModels
 {
-    public class HomePageViewModel : ViewModelBase
+    public class HomePageViewModel:ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly IWebApiService _webApiService;
-        public HomePageViewModel(INavigationService navigationService,IWebApiService webApiService)
-        {
-            ClickCommand = new Command(ClickCommandHandler);
-            ItemTappedCommand = new Command(ItemTappedCommandHandler);
-            _navigationService = navigationService;
-            _webApiService = webApiService;
-        }
-        private async void ItemTappedCommandHandler()
-        { 
-            await _navigationService.NavigateAsync("ViewContactListPage");
-        }
 
-        public ICommand ClickCommand { get; set; }
-        public ICommand ItemTappedCommand { get; set; }
-        private void ClickCommandHandler()
+        private string _messages;
+        public ICommand GoToMessagingCenterPageCommand { get; set; }
+        public ICommand SubscribeCommand { get; set; }
+        public HomePageViewModel(INavigationService NavigationService)
         {
-            IntializingService();
+            _navigationService = NavigationService;
+            SubscribeCommand = new Command(SubscribeCommandHandler);
+            GoToMessagingCenterPageCommand = new Command(GoToMessagingCenterPageCommandHandler);
         }
-        private List<Result> _apiContacts;
-        public List<Result> ApiContacts
-        {
-            get
-            {
-                return _apiContacts;
+        public string Messages
+        { 
+            get 
+            { 
+                return _messages; 
             }
             set
             {
-                SetProperty(ref _apiContacts, value);
+                SetProperty(ref _messages, value);
             }
-        }
-        public async void IntializingService()
+        } 
+        public void SubscribeCommandHandler()
         {
-           var a = _webApiService.IntializingService();
-            ApiContacts = await a;
+            MessagingCenter.Subscribe<MessagingCenterPageViewModel, DateTime>(this, "Hi", (p,DateTime) =>
+             {
+                 Messages=$"Logged in @ {DateTime.Now}";
+             });
+        }
+        private async void GoToMessagingCenterPageCommandHandler()
+        {
+          await _navigationService.NavigateAsync("MessagingCenterPage");
         }
     }
 }

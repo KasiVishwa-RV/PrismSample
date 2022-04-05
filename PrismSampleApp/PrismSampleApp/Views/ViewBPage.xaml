@@ -15,6 +15,8 @@
         </Button>
         <Button Text="Main Page"
             Command="{Binding GoHomeCommand}"/>
+        <Button Text="Show Time" Command="{Binding ShowTimeBCommand}"/>
+        <Label Text="{Binding Time}"/>
     </StackLayout>
 
 

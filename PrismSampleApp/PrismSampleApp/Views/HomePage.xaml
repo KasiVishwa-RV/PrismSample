@@ -1,48 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismSampleApp.Views.HomePage"
-             BackgroundImageSource="background.png"
-             xmlns:c="clr-namespace:PrismSampleApp.Converters;assembly=PrismSampleApp">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <c:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             xmlns:prism="http://prismlibrary.com"
+            xmlns:viewmodels="clr-namespace:PrismSampleApp.ViewModels" 
+            x:DataType="viewmodels:HomePageViewModel"
+            prism:ViewModelLocator.AutowireViewModel="True">
     <StackLayout>
-        <ListView ItemsSource="{Binding ApiContacts}" BackgroundColor="#00FFFFFF">
-            <ListView.Behaviors>
-                <prism:EventToCommandBehavior EventName="ItemTapped"
-                                          Command="{Binding ItemTappedCommand}"
-                                          EventArgsConverter="{StaticResource itemTappedEventArgsConverter}"/>
-            </ListView.Behaviors>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2" Source="{Binding Picture.Thumbnail}" Aspect="AspectFill"/>
-                            <Label Grid.Column="1" Text="{Binding Name.First}" FontAttributes="Bold"/>
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location.Country}" FontAttributes="Italic" VerticalOptions="End"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.Header>
-                <Button Command="{Binding ClickCommand}" BackgroundColor="Crimson" Text="Random Users"/>
-            </ListView.Header>
-            <ListView.Footer>
-                <Button Command="{Binding ClickCommand}"  BackgroundColor="MintCream" Text="Load more"/>
-            </ListView.Footer>
-        </ListView>
+        <Button Text="Subscribe" Command="{Binding SubscribeCommand}" HorizontalOptions="CenterAndExpand"/>
+        <Button Text="Go to Messaging Center Page" Command="{Binding GoToMessagingCenterPageCommand}" HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding Messages}" BackgroundColor="Beige" HorizontalOptions="CenterAndExpand"/>
     </StackLayout>
 </ContentPage>

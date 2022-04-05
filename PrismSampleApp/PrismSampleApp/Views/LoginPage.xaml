@@ -23,6 +23,7 @@
                     <StackLayout>
                         <StackLayout Margin="10">
                             <Label Text="SIGN IN" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                            <Button Text="Send Message" Command="{Binding SendMessageCommand}"/>
                         </StackLayout>
                         <StackLayout Padding="0" Margin="15,10">
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">

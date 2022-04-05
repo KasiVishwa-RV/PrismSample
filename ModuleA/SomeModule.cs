@@ -1,20 +1,9 @@
-﻿using ModuleA.Views;
-using Prism.Ioc;
-using Prism.Modularity;
+﻿using System;
 
 namespace ModuleA
 {
-    public class SomeModule : IModule
+    public class Class1
     {
-        public void OnInitialized(IContainerProvider containerProvider)
-        {
-            
-        }
 
-        public void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterForNavigation<TabView>();
-        }
-        
     }
 }

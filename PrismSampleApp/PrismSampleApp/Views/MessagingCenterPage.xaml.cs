@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace PrismSampleApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WorldTimePage : TabbedPage
+    public partial class MessagingCenterPage : ContentPage
     {
-        public WorldTimePage()
+        public MessagingCenterPage()
         {
             InitializeComponent();
         }

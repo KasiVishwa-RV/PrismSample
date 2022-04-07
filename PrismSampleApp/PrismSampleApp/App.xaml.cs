@@ -40,13 +40,8 @@ namespace PrismSampleApp
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<ViewAPage, ViewAPageViewModel>();
-            containerRegistry.RegisterForNavigation<ViewBPage, ViewBPageViewModel>();
-            containerRegistry.RegisterForNavigation<ViewCPage, ViewCPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
-            containerRegistry.RegisterForNavigation<AddContactPage, AddContactPageViewModel>();
             containerRegistry.RegisterForNavigation<ViewContactListPage, ViewContactListPageViewModel>();
-            containerRegistry.RegisterForNavigation<AddPersonPage, AddPersonPageViewModel>();
             containerRegistry.RegisterForNavigation<ApiContactsPage, ApiContactsPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<MessagingCenterPage, MessagingCenterPageViewModel>();

@@ -12,16 +12,17 @@ namespace PrismSampleApp.ViewModels
 	public class MessagingCenterPageViewModel : ViewModelBase
 	{
 		private readonly INavigationService _navigationService;
-
-		public MessagingCenterPageViewModel (INavigationService NavigationService)
+		private readonly IMessagingCenter _messagingCenter;
+		public MessagingCenterPageViewModel (INavigationService NavigationService , IMessagingCenter messagingCenter)
 		{
 			_navigationService = NavigationService;
+			_messagingCenter = messagingCenter;
 			SendMessageCommand = new Command(SendMessageCommandHandler);	
 		}
 		public ICommand SendMessageCommand { get; set; }
 		public void SendMessageCommandHandler()
 		{
-			MessagingCenter.Send<MessagingCenterPageViewModel, DateTime>(this, "Hi", DateTime.Now);
+			_messagingCenter.Send<MessagingCenterPageViewModel, DateTime>(this, "Hi", DateTime.Now);
 		}
 	}
 }

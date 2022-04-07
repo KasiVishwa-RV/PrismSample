@@ -16,13 +16,13 @@
         <Button Text="Go To ViewCPage"
             Command="{Binding NavigateToCCommand}"
             CommandParameter="/NavigationPage/ViewAPage/ViewBPage/ViewCPage"/>
-        <Label Text="{xct:Translate HeaderText}" HorizontalTextAlignment="Center" FontSize="36" TextColor="White"/>
-        <Label Text="{xct:Translate BodyText}" FontSize="Title" Padding="30,10,30,10" TextColor="White"/>
+        <Label Text="HeaderText" HorizontalTextAlignment="Center" FontSize="36" TextColor="White"/>
+        <Label Text="BodyText" FontSize="Title" Padding="30,10,30,10" TextColor="White"/>
         <Picker ItemsSource="{Binding SupportedLanguage}"
               ItemDisplayBinding="{Binding Name}"
               SelectedItem="{Binding SelectedLanguage}" />
 
-        <Button Text="{xct:Translate Save}"
+        <Button Text="Save"
               Command="{Binding ChangeLanguageCommand}" />
     </StackLayout>
 

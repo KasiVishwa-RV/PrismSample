@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0-windows</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
@@ -35,27 +35,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResource.es.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\AddContactPage.xaml.cs">
-      <DependentUpon>AddContactPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\AddPersonPage.xaml.cs">
-      <DependentUpon>AddPersonPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ApiContactsPageApiContactsPage.xaml.cs">
       <DependentUpon>ApiContactsPageApiContactsPage.xaml</DependentUpon>
 
-    </Compile>
-    <Compile Update="Views\ViewAPage.xaml.cs">
-      <DependentUpon>ViewAPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ViewBPage.xaml.cs">
-      <DependentUpon>ViewBPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ViewCPage.xaml.cs">
-      <DependentUpon>ViewCPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ViewContactListPage.xaml.cs">
       <DependentUpon>ViewContactListPage.xaml</DependentUpon>
@@ -74,25 +59,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddContactPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddPersonPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPageLoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MessagingCenterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewBPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewContactListPage.xaml">

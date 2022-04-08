@@ -7,25 +7,7 @@
 
     <StackLayout VerticalOptions="Center"
                Spacing="30">
-        <Button Text="Go To ViewAPage"
-            Command="{Binding NavigateToACommand}"
-            CommandParameter="/NavigationPage/ViewAPage"/>
-        <Button Text="Go To ViewBPage"
-            Command="{Binding NavigateToBCommand}"
-            CommandParameter="/NavigationPage/ViewAPage/ViewBPage"/>
-        <Button Text="Go To ViewCPage"
-            Command="{Binding NavigateToCCommand}"
-            CommandParameter="/NavigationPage/ViewAPage/ViewBPage/ViewCPage"/>
-        <Label Text="HeaderText" HorizontalTextAlignment="Center" FontSize="36" TextColor="White"/>
-        <Label Text="BodyText" FontSize="Title" Padding="30,10,30,10" TextColor="White"/>
-        <Picker ItemsSource="{Binding SupportedLanguage}"
-              ItemDisplayBinding="{Binding Name}"
-              SelectedItem="{Binding SelectedLanguage}" />
-
-        <Button Text="Save"
-              Command="{Binding ChangeLanguageCommand}" />
+        <Button Text="Go To ApiContacs Page" Command="{Binding GoToApiContactsPageCommand}"/>
+        <Button Text="Go To Home Page" Command="{Binding GoToHomePageCommand}"/>
     </StackLayout>
-
-
-
 </ContentPage>

@@ -17,6 +17,9 @@ namespace PrismSampleApp.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _pageDialogService;
+        public ICommand GoToApiContactsPageCommand { get; set; }
+        public ICommand GoToHomePageCommand { get; set; }
+        public ICommand ChangeLanguageCommand { get; set; }
         private string _title;
         public string Title
         {
@@ -49,9 +52,9 @@ namespace PrismSampleApp.ViewModels
             Title = "Main Page";
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
-            NavigateToACommand = new DelegateCommand(ExecuteNavigateCommandA);
-            NavigateToBCommand = new DelegateCommand(ExecuteNavigateCommandB);
-            NavigateToCCommand = new DelegateCommand(ExecuteNavigateCommandC);
+            GoToApiContactsPageCommand = new DelegateCommand(GoToApiContactsPageCommandHandler);
+            GoToHomePageCommand = new DelegateCommand(GoToHomePageCommandHandler);
+            
             ChangeLanguageCommand = new Command(PerformOperation);
             SupportedLanguage = new ObservableCollection<MyLanguage>()
             {
@@ -70,32 +73,16 @@ namespace PrismSampleApp.ViewModels
             LocalizationResourceManager.Current.SetCulture(CultureInfo.GetCultureInfo(SelectedLanguage.CI));
         }
 
-        public DelegateCommand NavigateToACommand { get; set; }
-        public DelegateCommand NavigateToBCommand { get; set; }
-        public DelegateCommand NavigateToCCommand{ get; set; }
-        public ICommand ChangeLanguageCommand { get; set; }
 
-        private async void ExecuteNavigateCommandA()
+        private async void GoToApiContactsPageCommandHandler()
         {
-            var viewA = new NavigationParameters();
-            viewA.Add("title", "Hello from MainPage");
-            await _navigationService.NavigateAsync("ViewAPage", viewA);
+            await _navigationService.NavigateAsync("ApiContactsPage");
         }
-        private async void ExecuteNavigateCommandB()
+        private async void GoToHomePageCommandHandler()
         {
-
-            var viewB = new NavigationParameters();
-            viewB.Add("title", "Hello from MainPage");
-
-            await _navigationService.NavigateAsync("ViewBPage", viewB);
+            await _navigationService.NavigateAsync("HomePage");
         }
-        private async void ExecuteNavigateCommandC()
-        {
-
-            var viewC = new NavigationParameters();
-            viewC.Add("title", "Hello from MainPage");
-            await _navigationService.NavigateAsync("ViewCPage", viewC);
-        }
+        
         public Task<bool> CanNavigateAsync(INavigationParameters parameters)
         {
             return _pageDialogService.DisplayAlertAsync(Title, "Navigate", "Yes", "No");

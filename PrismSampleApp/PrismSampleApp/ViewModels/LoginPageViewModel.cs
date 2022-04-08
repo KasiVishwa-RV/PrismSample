@@ -75,7 +75,7 @@ namespace PrismSampleApp.ViewModels
         }
         public async void LoginCommandHandler()
         {
-            logger.Info("Logging");
+           // logger.Info("Logging");
             if (Username == "admin" && Password == "123")
             {
                 await _navigationService.NavigateAsync("MainPage");

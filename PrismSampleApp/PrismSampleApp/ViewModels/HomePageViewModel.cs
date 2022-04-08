@@ -15,7 +15,7 @@ namespace PrismSampleApp.ViewModels
     public class HomePageViewModel:ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly IMessagingCenter _messagingCenter; 
+        private readonly IMessagingCenter _messagingCenter;
 
         private string _messages;
         public ICommand GoToMessagingCenterPageCommand { get; set; }
@@ -40,9 +40,9 @@ namespace PrismSampleApp.ViewModels
         } 
         public void SubscribeCommandHandler()
         {
-            _messagingCenter.Subscribe<MessagingCenterPageViewModel, DateTime>(this, "Hi", (p,DateTime) =>
+            _messagingCenter.Subscribe<MessagingCenterPageViewModel, DateTime>(this, "Hi", (sender,DateTime) =>
              {
-                 Messages=$"Logged in @ {DateTime.Now}";
+                 Messages = $"Logged in @ {DateTime.Now}";
              });
         }
         private async void GoToMessagingCenterPageCommandHandler()

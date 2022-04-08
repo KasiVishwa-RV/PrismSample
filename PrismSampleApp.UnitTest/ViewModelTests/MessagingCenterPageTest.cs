@@ -27,26 +27,6 @@ namespace PrismSampleApp.UnitTest.ViewModelTests
         [Fact]
         public void MessageSubscription()
         {
-            //Arrange
-            string Messages = $"Visited the page @ {DateTime.Now}";
-            //string msg = $"Visited the page @ {DateTime.Now}";
-            _messagingCenter.Setup(x => x.Subscribe<MessagingCenterPageViewModel, DateTime>(this, "Hi", DateTime.Now));
-            
-            NavigationService.Setup(x => x.NavigateAsync("MessagingCenterPage")).ReturnsAsync(_fixture.Create<NavigationResult>());
-
-            //Act
-            _messagingCenter.Setup(x=>x.Send(this, "Hi", DateTime.Now));
-            //MessagingCenter.Subscribe<MessagingCenterPageViewModel, DateTime>(this, "Hi", (p, DateTime) =>
-            //{
-            //    homePageViewModel.Messages = $"Visited the page @ {DateTime.Now}";
-            //});
-            homePageViewModel.GoToMessagingCenterPageCommand.Execute(new());
-            //_messagingCenter.Send<MessagingCenterPageViewModel, DateTime>(messagingCenterPageViewModel, "Hi", DateTime.Now);
-
-            //Assert
-            NavigationService.Verify(x => x.NavigateAsync("MessagingCenterPage"));
-            
-            
         }
     }
 }

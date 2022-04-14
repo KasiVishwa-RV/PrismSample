@@ -10,16 +10,16 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-[assembly:Dependency(typeof(WebApiService))]
+[assembly:Dependency(typeof(RandomUserService))]
 namespace PrismSampleApp.Services
 {
-    public class WebApiService : IWebApiService
+    public class RandomUserService : IRandomUserService
     {
-        public async Task<List<Result>> IntializingService()
+        public async Task<List<Result>> GetContactsAsync()
         {
             var content = await "https://randomuser.me/api/?results=50".GetJsonAsync<Root>();
-            var RecievedContacts = new List<Result>(content.Results);
-            return RecievedContacts;
+            var Contacts = new List<Result>(content.Results);
+            return Contacts;
         }  
     }
 }

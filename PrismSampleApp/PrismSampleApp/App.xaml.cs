@@ -11,6 +11,10 @@ using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
 using PrismSampleApp.Resx;
 using Xamarin.CommunityToolkit.Helpers;
+using Plugin.FirebasePushNotification;
+using System;
+using PrismSampleApp.Repository.Interfaces;
+using PrismSampleApp.Repository;
 
 namespace PrismSampleApp
 {
@@ -25,16 +29,24 @@ namespace PrismSampleApp
         {
             LocalizationResourceManager.Current.Init(AppResource.ResourceManager);
             InitializeComponent();
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            CrossFirebasePushNotification.Current.OnTokenRefresh += firebasePushNotificationTokenEventHandler;
+        }
+
+        private void firebasePushNotificationTokenEventHandler(object source, FirebasePushNotificationTokenEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine($"Token: { e.Token}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         { 
-            containerRegistry.Register<IWebApiService,WebApiService>();
+            containerRegistry.Register<IRandomUserService,RandomUserService>();
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
-            containerRegistry.RegisterSingleton<ILogger>();
+            //containerRegistry.RegisterSingleton<ILogger>();
             containerRegistry.RegisterSingleton<ILogManager>();
+            containerRegistry.RegisterSingleton<IMessagingCenter,MessagingCenter>();
+            containerRegistry.Register(typeof(IEmployeeRepository<>), typeof(EmployeeRepository<>));
 
 
 

@@ -6,10 +6,10 @@ using System.Text;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using PrismSampleApp.CustomRender;
+using PrismSampleApp.CustomControl;
 using PrismSampleApp.iOS;
 
-[assembly: ExportRenderer(typeof(CustomRenderer), typeof(CustomRendererIOS))]
+[assembly: ExportRenderer(typeof(CustomEntryRenderer), typeof(CustomRendererIOS))]
 namespace PrismSampleApp.iOS
 {
     public class CustomRendererIOS : EntryRenderer
@@ -20,7 +20,7 @@ namespace PrismSampleApp.iOS
 
             if (e.OldElement == null)
             {
-                var customEntry = (CustomRenderer)e.NewElement;
+                var customEntry = (CustomEntryRenderer)e.NewElement;
 
                 Control.Layer.CornerRadius = customEntry.EntryCornerRadius;
                 Control.Layer.BorderColor = customEntry.EntryBorderColor.ToCGColor();

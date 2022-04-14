@@ -6,15 +6,14 @@
              x:Class="PrismSampleApp.Views.ApiContactsPage"
              BackgroundImageSource="background.png"
              xmlns:c="clr-namespace:PrismSampleApp.Converters;assembly=PrismSampleApp" 
-             xmlns:customrenderer="clr-namespace:PrismSampleApp.CustomRender">
+             xmlns:customrenderer="clr-namespace:PrismSampleApp.CustomControl">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <!--<Label Text="{x:Static customrender:CustomRenderer}" HorizontalTextAlignment="Center" />-->
-        <customrenderer:CustomRenderer EntryBorderColor="DarkGoldenrod"
+        <customrenderer:CustomEntryRenderer EntryBorderColor="DarkGoldenrod"
                                  EntryCornerRadius="10"
                                  Text="Random Users"
                                  HorizontalOptions="CenterAndExpand"

@@ -11,6 +11,8 @@ using Xamarin.Forms;
 using PrismSampleApp.Resx;
 using System.Globalization;
 using Xamarin.CommunityToolkit.Helpers;
+using Xamarin.Essentials;
+
 namespace PrismSampleApp.ViewModels
 {
     public class MainPageViewModel : ViewModelBase , IPageLifecycleAware
@@ -20,13 +22,14 @@ namespace PrismSampleApp.ViewModels
         public ICommand GoToApiContactsPageCommand { get; set; }
         public ICommand GoToHomePageCommand { get; set; }
         public ICommand ChangeLanguageCommand { get; set; }
+        public ICommand TurnOnFlashLightCommand { get; set; }
+        public ICommand TurnOffFlashLightCommand { get; set; }
         private string _title;
         public string Title
         {
             get
             {
                 return _title;
-
             }
             set
             {
@@ -34,13 +37,11 @@ namespace PrismSampleApp.ViewModels
             }
         }
         private ObservableCollection<MyLanguage> _supportedLanguage;
-
         public ObservableCollection<MyLanguage> SupportedLanguage
         {
             get { return _supportedLanguage; }
             set { SetProperty(ref _supportedLanguage, value); }
         }
-
         private MyLanguage _selectedLanguage;
         public MyLanguage SelectedLanguage
         {
@@ -53,13 +54,13 @@ namespace PrismSampleApp.ViewModels
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
             GoToApiContactsPageCommand = new DelegateCommand(GoToApiContactsPageCommandHandler);
-            GoToHomePageCommand = new DelegateCommand(GoToHomePageCommandHandler);
-            
+            GoToHomePageCommand = new DelegateCommand(GoToHomePageCommandHandler);   
             ChangeLanguageCommand = new Command(PerformOperation);
+            TurnOnFlashLightCommand = new Command(TurnOnFlashLightCommandHandler);
+            TurnOffFlashLightCommand = new Command(TurnOffFlashLightCommandHandler);
             SupportedLanguage = new ObservableCollection<MyLanguage>()
             {
                 new MyLanguage{Name=AppResource.English,CI="en"},
-                new MyLanguage{Name=AppResource.Spanish,CI="es"},
                 new MyLanguage{Name=AppResource.French,CI="fr"},
                 new MyLanguage{Name=AppResource.Tamil,CI="ta"}
             };
@@ -67,13 +68,8 @@ namespace PrismSampleApp.ViewModels
         }
         private void PerformOperation(object obj)
         {
-            //CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.UserCustomCulture | CultureTypes.SpecificCultures);
-            //var getCulture = CultureInfo.CurrentUICulture.Name;
-
             LocalizationResourceManager.Current.SetCulture(CultureInfo.GetCultureInfo(SelectedLanguage.CI));
         }
-
-
         private async void GoToApiContactsPageCommandHandler()
         {
             await _navigationService.NavigateAsync("ApiContactsPage");
@@ -82,20 +78,26 @@ namespace PrismSampleApp.ViewModels
         {
             await _navigationService.NavigateAsync("HomePage");
         }
-        
         public Task<bool> CanNavigateAsync(INavigationParameters parameters)
         {
             return _pageDialogService.DisplayAlertAsync(Title, "Navigate", "Yes", "No");
-
         }
         public async  void OnAppearing()
         {
            await _pageDialogService.DisplayAlertAsync("MainPage","We are appearing","ok");
         }
-
         public async void OnDisappearing()
         {
            await _pageDialogService.DisplayAlertAsync("MainPage", "We are disappearing", "ok");
         }
+        public async void TurnOnFlashLightCommandHandler()
+        {
+            await Flashlight.TurnOnAsync();
+        }
+        public async void TurnOffFlashLightCommandHandler()
+        {
+            await Flashlight.TurnOffAsync();
+        }
+
     }
 }

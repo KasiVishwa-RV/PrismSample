@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace PrismSampleApp.CustomRender
+namespace PrismSampleApp.CustomControl
 {
-    public class CustomRenderer : Entry
+    public class CustomEntryRenderer : Entry
     {
-        public static readonly string Description = "Random Api Data";
         public static readonly BindableProperty CornerRadiusProperty =
-          BindableProperty.Create("CornerRadius", typeof(int), typeof(CustomRenderer), 0);
+          BindableProperty.Create("CornerRadius", typeof(int), typeof(CustomEntryRenderer), 0);
 
         public int EntryCornerRadius
         {
@@ -18,7 +17,7 @@ namespace PrismSampleApp.CustomRender
         }
 
         public static readonly BindableProperty BorderColorProperty =
-          BindableProperty.Create("BorderThickness", typeof(Color), typeof(CustomRenderer), Color.AliceBlue);
+          BindableProperty.Create("BorderThickness", typeof(Color), typeof(CustomEntryRenderer), Color.AliceBlue);
 
         public Color EntryBorderColor
         {

@@ -14,12 +14,12 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace PrismSampleApp.UnitTest.ServiceTest
 {
-    public class WebApiServiceTest
+    public class RandomUserServiceTest
     {
-        private readonly WebApiService _webApiService;
-        public WebApiServiceTest()
+        private readonly RandomUserService _randomUserService;
+        public RandomUserServiceTest()
         {
-            _webApiService = new WebApiService();
+            _randomUserService = new RandomUserService();
         }
         [Fact]
         public async void GetData()
@@ -30,9 +30,7 @@ namespace PrismSampleApp.UnitTest.ServiceTest
                 httpTest.RespondWith("OK", 200);
                 httpTest.ForCallsTo("https://randomuser.me/api/?results=50").AllowRealHttp();
                 //Act
-                var result = await _webApiService.IntializingService();
-                var a = result.GetType().ToString();
-
+                var result = await _randomUserService.GetContactsAsync();
                 //Assert
                 httpTest.RespondWithJson("https://randomuser.me/api/?results=50");
                 Assert.AreEqual(50, result.Count);

@@ -2,10 +2,10 @@
 using Android.Graphics.Drawables;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using PrismSampleApp.CustomRender;
+using PrismSampleApp.CustomControl;
 using PrismSampleApp.Droid;
 
-[assembly: ExportRenderer(typeof(CustomRenderer), typeof(CustomRendererAndroid))]
+[assembly: ExportRenderer(typeof(CustomEntryRenderer), typeof(CustomRendererAndroid))]
 namespace PrismSampleApp.Droid
 {
     class CustomRendererAndroid : EntryRenderer
@@ -13,16 +13,13 @@ namespace PrismSampleApp.Droid
         public CustomRendererAndroid(Context context) : base(context)
         {
         }
-
-        CustomRenderer _customRenderer;
-
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
 
             if (e.OldElement == null)
             {
-                _customRenderer = (CustomRenderer)e.NewElement;
+                var _customRenderer = (CustomEntryRenderer)e.NewElement;
                 var gradientDrawable = new GradientDrawable();
                 gradientDrawable.SetCornerRadius(_customRenderer.EntryCornerRadius);
                 gradientDrawable.SetStroke(10, _customRenderer.EntryBorderColor.ToAndroid());

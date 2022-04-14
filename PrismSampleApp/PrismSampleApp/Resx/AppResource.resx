@@ -129,6 +129,9 @@
   <data name="HeaderText" xml:space="preserve">
     <value>This is a SampleApp</value>
   </data>
+  <data name="LoginPage" xml:space="preserve">
+    <value>Login Page</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -137,5 +140,8 @@
   </data>
   <data name="Tamil" xml:space="preserve">
     <value>Tamil</value>
+  </data>
+  <data name="WrongCredentials" xml:space="preserve">
+    <value>Wrong Credentials</value>
   </data>
 </root>

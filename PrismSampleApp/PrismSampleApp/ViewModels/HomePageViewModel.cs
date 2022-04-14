@@ -20,7 +20,7 @@ namespace PrismSampleApp.ViewModels
         private string _messages;
         public ICommand GoToMessagingCenterPageCommand { get; set; }
         public ICommand SubscribeCommand { get; set; }
-        public HomePageViewModel(INavigationService NavigationService , IMessagingCenter messagingCenter)
+        public HomePageViewModel(INavigationService NavigationService, IMessagingCenter messagingCenter)
         {
             _navigationService = NavigationService;
             _messagingCenter = messagingCenter;

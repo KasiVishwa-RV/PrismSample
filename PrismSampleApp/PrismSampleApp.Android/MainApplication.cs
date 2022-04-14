@@ -1,12 +1,11 @@
 using System;
 using Android.App;
+using Android.OS;
+using Xamarin.Essentials;
 using Android.Runtime;
 
 namespace PrismSampleApp.Droid
-{
-    [Application(
-        Theme = "@style/MainTheme"
-        )]
+{ 
     public class MainApplication : Application
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
@@ -17,7 +16,8 @@ namespace PrismSampleApp.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            Xamarin.Essentials.Platform.Init(this);
+            Platform.Init(this);
+
         }
     }
 }

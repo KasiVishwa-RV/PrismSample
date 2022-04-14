@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace PrismSampleApp.Services.Interfaces
 {
-    public interface IWebApiService
+    public interface IRandomUserService
     {
-    Task<List<Result>> IntializingService();
+    Task<List<Result>> GetContactsAsync();
     }
 }

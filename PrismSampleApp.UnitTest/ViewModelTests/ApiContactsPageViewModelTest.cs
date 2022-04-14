@@ -13,21 +13,21 @@ using System.Linq;
 
 namespace PrismSampleApp.UnitTest.ViewModelTests
 {
-    public class ApiContactsPageTest
+    public class ApiContactsPageViewModelTest
     {
         private readonly Mock<INavigationService> _navigationService;
         private readonly Mock<IPageDialogService> _pageDialogService;
-        private readonly Mock<IWebApiService> _webApiService;
+        private readonly Mock<IRandomUserService> _randomUserService;
         private readonly ApiContactsPageViewModel apiContactsPageViewModel;
         private readonly Fixture _fixture = new Fixture();
 
 
-        public ApiContactsPageTest()
+        public ApiContactsPageViewModelTest()
         {
             _navigationService = new Mock<INavigationService>();
             _pageDialogService = new Mock<IPageDialogService>();
-            _webApiService = new Mock<IWebApiService>();
-            apiContactsPageViewModel = new ApiContactsPageViewModel(_navigationService.Object, _pageDialogService.Object, _webApiService.Object);
+            _randomUserService = new Mock<IRandomUserService>();
+            apiContactsPageViewModel = new ApiContactsPageViewModel(_navigationService.Object, _pageDialogService.Object, _randomUserService.Object);
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace PrismSampleApp.UnitTest.ViewModelTests
             var apiData = _fixture.Build<Result>().CreateMany(50).ToList();
 
             //Act
-            _webApiService.Setup(x => x.IntializingService()).ReturnsAsync(apiData);
+            _randomUserService.Setup(x => x.GetContactsAsync()).ReturnsAsync(apiData);
             apiContactsPageViewModel.ClickCommand.Execute(new());
 
             //Assert

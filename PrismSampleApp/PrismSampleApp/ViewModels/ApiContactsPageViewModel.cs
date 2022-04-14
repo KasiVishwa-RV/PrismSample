@@ -7,21 +7,22 @@ using PrismSampleApp.Services.Interfaces;
 using System;
 using Prism.Commands;
 using System.Linq;
+using Prism.Mvvm;
 
 namespace PrismSampleApp.ViewModels
 {
     public class ApiContactsPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly IWebApiService _webApiService;
+        private readonly IRandomUserService _randomUserService;
         public ICommand ClickCommand { get; set; }
         public DelegateCommand<object> ItemTappedCommand { get; set; }
-        public ApiContactsPageViewModel(INavigationService navigationService, Prism.Services.IPageDialogService @object, IWebApiService webApiService)
+        public ApiContactsPageViewModel(INavigationService navigationService, Prism.Services.IPageDialogService @object, IRandomUserService randomUserService)
         {
             ClickCommand = new Command(ClickCommandHandler);
             ItemTappedCommand = new DelegateCommand<object>(ItemTappedCommandHandler);
             _navigationService = navigationService;
-            _webApiService = webApiService;
+            _randomUserService = randomUserService;
         }
         private async void ItemTappedCommandHandler(object data)
         {
@@ -34,7 +35,7 @@ namespace PrismSampleApp.ViewModels
 
         private void ClickCommandHandler()
         {
-            IntializingService();
+            GetContacts();
         }
         private List<Result> _apiContacts;
         public List<Result> ApiContacts
@@ -48,10 +49,9 @@ namespace PrismSampleApp.ViewModels
                 SetProperty(ref _apiContacts, value);
             }
         }
-        public async void IntializingService()
+        public async void GetContacts()
         {
-           var a = await _webApiService.IntializingService();
-            ApiContacts = a;
+            ApiContacts = await _randomUserService.GetContactsAsync();   
         }
     }
 }

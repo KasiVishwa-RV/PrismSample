@@ -6,7 +6,7 @@ namespace PrismSampleApp.Views
     {
         public LoginPage()
         {
-            InitializeComponent();
+             InitializeComponent();
         }
     }
 }

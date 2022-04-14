@@ -16,10 +16,6 @@ namespace PrismSampleApp.ViewModels
 {
     public class ViewContactListPageViewModel : ViewModelBase , INavigatedAware
     {
-        public ViewContactListPageViewModel()
-        {
-            
-        }
         private List<Result> _content;
         public List<Result> Content
         {
@@ -31,17 +27,14 @@ namespace PrismSampleApp.ViewModels
             {
                 SetProperty(ref _content, value);
             }
-
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
             
         }
-
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            var res = parameters.GetValue<List<Result>>("TappedData");
-            Content = res;
+            Content = parameters.GetValue<List<Result>>("TappedData");
         }
     }
 }

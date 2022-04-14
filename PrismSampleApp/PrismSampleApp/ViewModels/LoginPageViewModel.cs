@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using Prism.Services;
 using PrismSampleApp.Views;
 using PrismSampleApp.Services.Interfaces;
+using PrismSampleApp.Repository.Interfaces;
+using PrismSampleApp.Model;
+using PrismSampleApp.Resx;
 
 namespace PrismSampleApp.ViewModels
 {
@@ -19,7 +22,8 @@ namespace PrismSampleApp.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _pageDialogService;
-        private static ILogger logger = DependencyService.Get<ILogManager>().GetLog();
+       // private readonly ILogger _logger;
+        private readonly IEmployeeRepository<EmployeeModel> _employeeRepository;
         private string _title;
         private string _username;
         private string _password;
@@ -35,13 +39,17 @@ namespace PrismSampleApp.ViewModels
                 SetProperty(ref _title,value);
             }
         }
-        public LoginPageViewModel(INavigationService NavigationService,IPageDialogService pageDialogService)
+        public LoginPageViewModel(INavigationService NavigationService , IPageDialogService pageDialogService , IEmployeeRepository<EmployeeModel> employeeRepository)
         {
             _navigationService = NavigationService;
+            _employeeRepository = employeeRepository;
+            _employeeRepository.Insert(new EmployeeModel { Email = "john", Password = "54321" });
             Title = "Login Page";
             _pageDialogService = pageDialogService;
             LoginCommand = new Command(LoginCommandHandler);
             SendMessageCommand = new Command(SendMessageCommandHandler);
+           // _logger = logger;
+            //logger = DependencyService.Get<ILogManager>().GetLog();
         }
 
         public ICommand LoginCommand { get; set; }
@@ -75,14 +83,16 @@ namespace PrismSampleApp.ViewModels
         }
         public async void LoginCommandHandler()
         {
-           // logger.Info("Logging");
-            if (Username == "admin" && Password == "123")
+            //_logger.Info("Logging");
+            var result = await _employeeRepository.Get();
+            var user = result.Where(x => x.Email == Username && x.Password == Password).FirstOrDefault();
+            if (user!=null)
             {
                 await _navigationService.NavigateAsync("MainPage");
             }
             else
             {
-                await _pageDialogService.DisplayAlertAsync("LoginPage", "Wrong Credentials", "Retry");
+                await _pageDialogService.DisplayAlertAsync(AppResource.LoginPage,AppResource.WrongCredentials, "Retry");
             }
         }
     }

@@ -7,7 +7,6 @@
              x:DataType="ViewModel:LoginPageViewModel"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismSampleApp.Views.LoginPage"
-             Title="{Binding Title}"
              BackgroundImageSource="background.png">
 
 
@@ -23,7 +22,6 @@
                     <StackLayout>
                         <StackLayout Margin="10">
                             <Label Text="SIGN IN" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
-                            <Button Text="Send Message" Command="{Binding SendMessageCommand}"/>
                         </StackLayout>
                         <StackLayout Padding="0" Margin="15,10">
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -50,7 +48,7 @@
                             <Button Command="{Binding LoginCommand}" Text="SIGN IN" BackgroundColor="HotPink" TextColor="White" CornerRadius="30" />
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                                 <Label Text="Still Not Connected ?" TextColor="DarkGray" FontSize="Small"/>
-                                <Label Text="Sign Up" TextColor="HotPink" FontAttributes="Bold" FontSize="Small"/>
+                                <Button Text="Sign Up" Command="{Binding SignUpCommand}" TextColor="HotPink" FontAttributes="Bold" FontSize="Small"/>
                             </StackLayout>
                             <StackLayout Margin="0,25,0,0" Padding="0">
                                 <Grid>

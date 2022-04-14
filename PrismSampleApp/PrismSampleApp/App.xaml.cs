@@ -57,6 +57,7 @@ namespace PrismSampleApp
             containerRegistry.RegisterForNavigation<ApiContactsPage, ApiContactsPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<MessagingCenterPage, MessagingCenterPageViewModel>();
+            containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
         }
         protected override void OnStart()
         {

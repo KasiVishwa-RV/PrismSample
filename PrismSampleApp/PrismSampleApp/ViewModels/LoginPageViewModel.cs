@@ -22,38 +22,21 @@ namespace PrismSampleApp.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _pageDialogService;
-       // private readonly ILogger _logger;
         private readonly IEmployeeRepository<EmployeeModel> _employeeRepository;
-        private string _title;
         private string _username;
         private string _password;
-        public string Title
-        {
-            get
-            {
-                return _title;
-
-            }
-            set
-            {
-                SetProperty(ref _title,value);
-            }
-        }
+        public ICommand LoginCommand { get; set; }
+        public ICommand SignUpCommand { get; set; }
         public LoginPageViewModel(INavigationService NavigationService , IPageDialogService pageDialogService , IEmployeeRepository<EmployeeModel> employeeRepository)
         {
             _navigationService = NavigationService;
             _employeeRepository = employeeRepository;
-            _employeeRepository.Insert(new EmployeeModel { Email = "john", Password = "54321" });
-            Title = "Login Page";
+            //_employeeRepository.Insert(new EmployeeModel { Email = "john", Password = "54321" });
             _pageDialogService = pageDialogService;
             LoginCommand = new Command(LoginCommandHandler);
-            SendMessageCommand = new Command(SendMessageCommandHandler);
-           // _logger = logger;
-            //logger = DependencyService.Get<ILogManager>().GetLog();
+            SignUpCommand = new Command(SignUpCommandHandler);
         }
 
-        public ICommand LoginCommand { get; set; }
-        public ICommand SendMessageCommand { get; set; }
         public string Username
         {
             get
@@ -77,15 +60,10 @@ namespace PrismSampleApp.ViewModels
                 
             }
         }
-        public void SendMessageCommandHandler()
-        {
-                MessagingCenter.Send<LoginPageViewModel, DateTime>(this, "tick", DateTime.Now);
-        }
         public async void LoginCommandHandler()
         {
-            //_logger.Info("Logging");
             var result = await _employeeRepository.Get();
-            var user = result.Where(x => x.Email == Username && x.Password == Password).FirstOrDefault();
+            var user = result.Where(x => x.Email == Username && x.Password == Password);
             if (user!=null)
             {
                 await _navigationService.NavigateAsync("MainPage");
@@ -94,6 +72,10 @@ namespace PrismSampleApp.ViewModels
             {
                 await _pageDialogService.DisplayAlertAsync(AppResource.LoginPage,AppResource.WrongCredentials, "Retry");
             }
+        }
+        public async void SignUpCommandHandler()
+        {
+            await _navigationService.NavigateAsync("SignUpPage");
         }
     }
 }

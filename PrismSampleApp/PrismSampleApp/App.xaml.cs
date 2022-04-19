@@ -46,7 +46,7 @@ namespace PrismSampleApp
             //containerRegistry.RegisterSingleton<ILogger>();
             containerRegistry.RegisterSingleton<ILogManager>();
             containerRegistry.RegisterSingleton<IMessagingCenter,MessagingCenter>();
-            containerRegistry.Register(typeof(IEmployeeRepository<>), typeof(EmployeeRepository<>));
+            containerRegistry.Register(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 
 
@@ -69,7 +69,7 @@ namespace PrismSampleApp
         }
         protected override async void OnResume()
         {
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            base.OnResume();
         }
 
     }

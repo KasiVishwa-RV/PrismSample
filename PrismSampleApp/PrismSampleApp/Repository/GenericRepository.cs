@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace PrismSampleApp.Repository
 {
-    public class EmployeeRepository<T> : IEmployeeRepository<T> where T : class, new()
+    public class GenericRepository<T> : IGenericRepository<T> where T : class, new()
     {
         private SQLiteAsyncConnection db;
 
-        public EmployeeRepository()
+        public GenericRepository()
         {
             var connection = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EmployeeTable.db3");
             db = new SQLiteAsyncConnection(connection);

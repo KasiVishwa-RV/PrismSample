@@ -1,12 +1,5 @@
-﻿using Prism.Commands;
-using Prism.Navigation;
-using PrismSampleApp.ApplicationCommand;
-using PrismSampleApp.Services.Interfaces;
-using PrismSampleApp.Views;
+﻿using Prism.Navigation;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -40,7 +33,7 @@ namespace PrismSampleApp.ViewModels
         } 
         public void SubscribeCommandHandler()
         {
-            _messagingCenter.Subscribe<MessagingCenterPageViewModel, DateTime>(this, "Hi", (sender,DateTime) =>
+            _messagingCenter.Subscribe<MessagingCenterPageViewModel, DateTime>(this, AppConstants.Constants.Tick, (sender,DateTime) =>
              {
                  Messages = $"Logged in @ {DateTime.Now}";
              });

@@ -14,15 +14,15 @@ namespace PrismSampleApp.ViewModels
     public class SignUpPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly IEmployeeRepository<EmployeeModel> _employeeRepository;
+        private readonly IGenericRepository<EmployeeModel> _genericRepository;
         private string _username;
         private string _password;
         private string _email;
         public ICommand SignUpCommand { get; set; }
-        public SignUpPageViewModel(INavigationService navigationService, IEmployeeRepository<EmployeeModel> employeeRepository)
+        public SignUpPageViewModel(INavigationService navigationService, IGenericRepository<EmployeeModel> genericRepository)
         {
             _navigationService = navigationService;
-            _employeeRepository = employeeRepository;
+            _genericRepository = genericRepository;
             SignUpCommand = new Command(SignUpCommandHandler);
         }
         public string Username
@@ -61,7 +61,7 @@ namespace PrismSampleApp.ViewModels
         }
         public async void SignUpCommandHandler()
         {
-            await _employeeRepository.Insert(new EmployeeModel { Email = Email, UserName = Username, Password = Password });
+            await _genericRepository.Insert(new EmployeeModel { Email = Email, UserName = Username, Password = Password });
             await _navigationService.GoBackAsync();
         
         }

@@ -29,7 +29,7 @@
                                     <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
                                         <Image Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
-                                    <Entry Text="{Binding Username}" Placeholder="Email" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    <Entry Text="{Binding Username}" Placeholder="UserName" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                 </StackLayout>
                             </Frame>
                             <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -44,8 +44,11 @@
                                 <CheckBox IsChecked="False" Color="HotPink" />
                                 <Label Text="Remember me" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
                                 <Label Text="Forgot Password" TextColor="HotPink" FontAttributes="Bold" HorizontalOptions="EndAndExpand" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                <Button Command="{Binding LoginCommand}" Text="SIGN IN" BackgroundColor="HotPink" TextColor="White" CornerRadius="30" />
                             </StackLayout>
-                            <Button Command="{Binding LoginCommand}" Text="SIGN IN" BackgroundColor="HotPink" TextColor="White" CornerRadius="30" />
+                            <StackLayout>
+                                <Label Text="{Binding BatteryDetails}" HorizontalOptions="Center" TextColor="Black" BackgroundColor="Red"/>
+                            </StackLayout>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                                 <Label Text="Still Not Connected ?" TextColor="DarkGray" FontSize="Small"/>
                                 <Button Text="Sign Up" Command="{Binding SignUpCommand}" TextColor="HotPink" FontAttributes="Bold" FontSize="Small"/>

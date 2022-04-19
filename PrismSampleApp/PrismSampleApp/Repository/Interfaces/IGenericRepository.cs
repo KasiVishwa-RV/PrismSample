@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrismSampleApp.Repository.Interfaces
 {
-    public interface IEmployeeRepository<T> where T : class, new()
+    public interface IGenericRepository<T> where T : class, new()
     {
         Task<List<T>> Get();
         Task<T> Get(int id);

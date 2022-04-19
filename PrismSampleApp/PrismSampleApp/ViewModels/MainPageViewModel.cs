@@ -25,6 +25,8 @@ namespace PrismSampleApp.ViewModels
         public ICommand TurnOnFlashLightCommand { get; set; }
         public ICommand TurnOffFlashLightCommand { get; set; }
         private string _title;
+        private MyLanguage _selectedLanguage;
+        private ObservableCollection<MyLanguage> _supportedLanguage;
         public string Title
         {
             get
@@ -36,13 +38,11 @@ namespace PrismSampleApp.ViewModels
                 SetProperty(ref _title, value);
             }
         }
-        private ObservableCollection<MyLanguage> _supportedLanguage;
         public ObservableCollection<MyLanguage> SupportedLanguage
         {
             get { return _supportedLanguage; }
             set { SetProperty(ref _supportedLanguage, value); }
         }
-        private MyLanguage _selectedLanguage;
         public MyLanguage SelectedLanguage
         {
             get { return _selectedLanguage; }
@@ -82,13 +82,15 @@ namespace PrismSampleApp.ViewModels
         {
             return _pageDialogService.DisplayAlertAsync(Title, "Navigate", "Yes", "No");
         }
-        public async  void OnAppearing()
+        public void OnAppearing()
         {
-           await _pageDialogService.DisplayAlertAsync("MainPage","We are appearing","ok");
+            //await _pageDialogService.DisplayAlertAsync("MainPage","We are appearing","ok");
+            Vibration.Vibrate(); 
         }
         public async void OnDisappearing()
         {
-           await _pageDialogService.DisplayAlertAsync("MainPage", "We are disappearing", "ok");
+           //await _pageDialogService.DisplayAlertAsync("MainPage", "We are disappearing", "ok");
+            Vibration.Vibrate(); 
         }
         public async void TurnOnFlashLightCommandHandler()
         {
@@ -98,6 +100,5 @@ namespace PrismSampleApp.ViewModels
         {
             await Flashlight.TurnOffAsync();
         }
-
     }
 }

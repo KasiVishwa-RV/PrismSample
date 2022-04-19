@@ -1,36 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
+             xmlns:prism="http://prismlibrary.com" 
              prism:ViewModelLocator.AutowireViewModel="True"
              BackgroundImageSource="background.png"
              x:Class="PrismSampleApp.Views.ViewContactListPage">
     <StackLayout>
-        <ListView RowHeight="80" ItemsSource="{Binding Content}">
-            <ListView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding SeperateDetails}">
+            <CollectionView.ItemTemplate>
             <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Gender:" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="{Binding Gender}" Grid.Row="0" Grid.Column="1" TextColor="White"/>
-                            <Label Text="Location:" Grid.Row="1" Grid.Column="0"  FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="{Binding Location.City}" Grid.Row="1" Grid.Column="1" TextColor="White"/>
-                            <Label Text="DOB:" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="{Binding Dob.Date}" Grid.Row="2" Grid.Column="1" TextColor="White"/>
-                            <Label Text="Phone:" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" TextColor="White" />
-                        </Grid>
-                    </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-        </ListView>
+                    <StackLayout>
+                        <Frame HasShadow="True"
+                               BorderColor="DarkGray"
+                               CornerRadius="5"
+                               Margin="50"
+                               BackgroundColor="LightSteelBlue"
+                               HeightRequest="400"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+                            <StackLayout>
+                                <Label Text="{Binding Name.First}" 
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Image Source="{Binding Picture.Large}" 
+                                       Aspect="AspectFill"
+                                       HeightRequest="300"
+                                       WidthRequest="300"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding Location.City}"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding Cell}"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="{Binding Email}"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+        </CollectionView.ItemTemplate>
+        </CollectionView>
+    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+        <Button VerticalOptions="Center" HorizontalOptions="Center" Text="Call" Command="{Binding CallCommand}" BorderColor="Green" BorderWidth="50"/>
+        <Button VerticalOptions="Center" HorizontalOptions="Center" Text="SMS" Command="{Binding SmsCommand}" BorderColor="NavajoWhite" BorderWidth="50"/>
+        <Button VerticalOptions="Center" HorizontalOptions="Center" Text="Email" Command="{Binding EmailCommand}" BorderColor="LightCoral" BorderWidth="50"/>
+    </StackLayout>
     </StackLayout>
 </ContentPage>

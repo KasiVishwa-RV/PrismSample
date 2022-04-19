@@ -15,6 +15,7 @@ namespace PrismSampleApp.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IRandomUserService _randomUserService;
+        private List<Result> _apiContacts;
         public ICommand ClickCommand { get; set; }
         public DelegateCommand<object> ItemTappedCommand { get; set; }
         public ApiContactsPageViewModel(INavigationService navigationService, Prism.Services.IPageDialogService @object, IRandomUserService randomUserService)
@@ -37,7 +38,6 @@ namespace PrismSampleApp.ViewModels
         {
             GetContacts();
         }
-        private List<Result> _apiContacts;
         public List<Result> ApiContacts
         {
             get
